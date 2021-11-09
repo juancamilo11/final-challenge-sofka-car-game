@@ -21,4 +21,11 @@ public class InicarJuegoCommand extends Command {
     public void setJuegoId(JuegoId juegoId) {
         this.juegoId = juegoId;
     }
+
+    @Override
+    public String toString() {
+        return "InicarJuegoCommand{" +
+                "juegoId=" + juegoId +
+                '}';
+    }
 }
