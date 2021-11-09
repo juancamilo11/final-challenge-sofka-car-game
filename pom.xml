@@ -30,6 +30,12 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.3.12</version>
+        </dependency>
         <dependency>
             <groupId>co.com.sofka</groupId>
             <artifactId>domain</artifactId>

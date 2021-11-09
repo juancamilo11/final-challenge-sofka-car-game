@@ -35,4 +35,11 @@ public class CrearJuegoCommand extends Command {
         this.kilometros = kilometros;
     }
 
+    @Override
+    public String toString() {
+        return "CrearJuegoCommand{" +
+                "kilometros=" + kilometros +
+                ", jugadores=" + jugadores +
+                '}';
+    }
 }
