@@ -57,3 +57,12 @@ code {
 .game-container {
   margin-bottom: 150px;
 }
+
+.img-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.img-car {
+  width: 100px;
+}

@@ -3,9 +3,54 @@ import { GameContext } from "./game/gameContext";
 import { gameReducer } from "./game/gameReducer";
 import AppRouter from "./router/AppRouter";
 
+const playerList = [
+  {
+    id: 1,
+    name: "Camilo",
+    phoneNumber: "31223456",
+    email: "juan@gmail.com",
+    address: "crra 15 #8-21",
+  },
+  {
+    id: 2,
+    name: "Carlos",
+    phoneNumber: "3122321212456",
+    email: "carlos@gmail.com",
+    address: "crra 20 #82-28",
+  },
+  {
+    id: 3,
+    name: "Ana",
+    phoneNumber: "212123243",
+    email: "ana@gmail.com",
+    address: "crra 222 #822-21",
+  },
+  {
+    id: 4,
+    name: "Ana",
+    phoneNumber: "212123243",
+    email: "ana@gmail.com",
+    address: "crra 222 #822-21",
+  },
+  {
+    id: 5,
+    name: "Ana",
+    phoneNumber: "212123243",
+    email: "ana@gmail.com",
+    address: "crra 222 #822-21",
+  },
+  {
+    id: 6,
+    name: "Ana",
+    phoneNumber: "212123243",
+    email: "ana@gmail.com",
+    address: "crra 222 #822-21",
+  },
+];
+
 const initialState = {
   playing: true,
-  playerList: [],
+  playerList,
   numRound: 0,
   finished: false,
 };
