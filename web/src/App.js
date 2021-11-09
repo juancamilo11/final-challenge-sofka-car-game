@@ -1,7 +1,9 @@
+import GameScreen from "./prages/GameScreen";
+
 function App() {
   return (
     <div className="App">
-      <h1>App</h1>
+      <GameScreen />
     </div>
   );
 }
