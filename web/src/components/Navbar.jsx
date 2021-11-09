@@ -12,35 +12,37 @@ export const Navbar = () => {
         <div className="navbar-nav">
           <NavLink
             activeClassName="active"
-            className="nav-item nav-link"
+            className="nav-item nav-link mx-3"
             exact
-            to="/marvel"
+            to="/player-list"
           >
-            Marvel
+            List of players
           </NavLink>
 
           <NavLink
             activeClassName="active"
             className="nav-item nav-link"
             exact
-            to="/dc"
+            to="/podium-list"
           >
-            DC
-          </NavLink>
-
-          <NavLink
-            activeClassName="active"
-            className="nav-item nav-link"
-            exact
-            to="/search"
-          >
-            Search
+            List of podiums
           </NavLink>
         </div>
       </div>
 
       <div>
         <ul className="navbar-nav ml-auto">
+          <button className="btn btn-primary">
+            {true ? (
+              <span>
+                Resume <i className="fas fa-play button-icon"></i>
+              </span>
+            ) : (
+              <span>
+                Stop <i className="fas fa-stop button-icon"></i>
+              </span>
+            )}
+          </button>
           <button className="btn btn-primary mx-3">Reset game</button>
           <button className="btn btn-primary">New game</button>
         </ul>

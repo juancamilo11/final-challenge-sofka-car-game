@@ -1,4 +1,5 @@
 import React from "react";
+import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import car_data from "../data/CAR_DATA";
 
@@ -8,7 +9,7 @@ const GameScreen = () => {
   return (
     <>
       <Navbar />
-      <ul>
+      <ul className="game-container">
         {cardata.map((carInfo) => (
           <li key={carInfo.id}>
             <h2>{carInfo.name}</h2>
@@ -20,6 +21,7 @@ const GameScreen = () => {
           </li>
         ))}
       </ul>
+      <Footer />
     </>
   );
 };
