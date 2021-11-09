@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { GameContext } from "../game/gameContext";
+import types from "../type/types";
 
 export const Navbar = () => {
+  const { game, dispatch } = useContext(GameContext);
+
+  const handleResume = () => {
+    if (game.playing) {
+      dispatch({
+        type: types.stopGame,
+        payload: game,
+      });
+    }
+    if (!game.playing) {
+      dispatch({
+        type: types.resumeGame,
+        payload: game,
+      });
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <Link className="navbar-brand mx-5" to="/">
@@ -32,8 +51,8 @@ export const Navbar = () => {
 
       <div>
         <ul className="navbar-nav ml-auto">
-          <button className="btn btn-primary">
-            {true ? (
+          <button className="btn btn-primary" onClick={() => handleResume()}>
+            {!game.playing ? (
               <span>
                 Resume <i className="fas fa-play button-icon"></i>
               </span>
