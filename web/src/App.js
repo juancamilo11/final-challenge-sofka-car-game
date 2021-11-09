@@ -1,9 +1,9 @@
-import GameScreen from "./prages/GameScreen";
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
     <div className="App">
-      <GameScreen />
+      <AppRouter />
     </div>
   );
 }
