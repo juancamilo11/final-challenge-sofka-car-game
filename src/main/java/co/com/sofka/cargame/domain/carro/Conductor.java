@@ -2,7 +2,7 @@ package co.com.sofka.cargame.domain.carro;
 
 
 import co.com.sofka.cargame.domain.carro.values.Cedula;
-import co.com.sofka.cargame.domain.generic.Entity;
+import co.com.sofka.domain.generic.Entity;
 
 import java.util.Objects;
 import java.util.Random;

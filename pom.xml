@@ -31,6 +31,26 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <groupId>co.com.sofka</groupId>
+            <artifactId>domain</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>co.com.sofka</groupId>
+            <artifactId>business</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>co.com.sofka</groupId>
+            <artifactId>infrastructure</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>co.com.sofka</groupId>
+            <artifactId>application</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-jsonb</artifactId>
         </dependency>

@@ -1,7 +1,8 @@
 package co.com.sofka.cargame.domain.juego.values;
 
 import co.com.sofka.cargame.domain.juego.Jugador;
-import co.com.sofka.cargame.domain.generic.ValueObject;
+
+import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 

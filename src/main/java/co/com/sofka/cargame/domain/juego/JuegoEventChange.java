@@ -2,7 +2,8 @@ package co.com.sofka.cargame.domain.juego;
 
 import co.com.sofka.cargame.domain.juego.events.*;
 import co.com.sofka.cargame.domain.juego.values.Podio;
-import co.com.sofka.cargame.domain.generic.EventChange;
+
+import co.com.sofka.domain.generic.EventChange;
 
 import java.util.HashMap;
 

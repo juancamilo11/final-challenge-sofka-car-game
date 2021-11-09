@@ -3,7 +3,7 @@ package co.com.sofka.cargame.domain.carro;
 import co.com.sofka.cargame.domain.carro.events.CarroCreado;
 import co.com.sofka.cargame.domain.carro.events.ConductorAsignado;
 import co.com.sofka.cargame.domain.carro.events.KilometrajeCambiado;
-import co.com.sofka.cargame.domain.generic.EventChange;
+import co.com.sofka.domain.generic.EventChange;
 
 import java.util.Objects;
 

@@ -8,8 +8,9 @@ import co.com.sofka.cargame.domain.carril.values.CarrilId;
 import co.com.sofka.cargame.domain.carril.values.Posicion;
 import co.com.sofka.cargame.domain.carro.values.CarroId;
 import co.com.sofka.cargame.domain.juego.values.JuegoId;
-import co.com.sofka.cargame.domain.generic.AggregateEvent;
-import co.com.sofka.cargame.domain.generic.DomainEvent;
+
+import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
 import java.util.List;
 

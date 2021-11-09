@@ -3,9 +3,10 @@ package co.com.sofka.cargame.domain.carro.command;
 import co.com.sofka.cargame.domain.Color;
 import co.com.sofka.cargame.domain.carro.values.CarroId;
 import co.com.sofka.cargame.domain.juego.values.JuegoId;
-import co.com.sofka.cargame.domain.generic.Command;
 
-public class CrearCarroCommand implements Command {
+import co.com.sofka.domain.generic.Command;
+
+public class CrearCarroCommand extends Command {
     private Color color;
     private CarroId carroId;
     private JuegoId juegoId;

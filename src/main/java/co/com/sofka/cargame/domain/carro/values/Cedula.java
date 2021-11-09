@@ -1,6 +1,7 @@
 package co.com.sofka.cargame.domain.carro.values;
 
-import co.com.sofka.cargame.domain.generic.Identity;
+
+import co.com.sofka.domain.generic.Identity;
 
 
 public class Cedula extends Identity {

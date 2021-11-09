@@ -1,8 +1,9 @@
 package co.com.sofka.cargame.domain.juego.events;
 
 import co.com.sofka.cargame.domain.juego.values.JugadorId;
-import co.com.sofka.cargame.domain.generic.DomainEvent;
-import co.com.sofka.cargame.domain.generic.Incremental;
+
+import co.com.sofka.domain.generic.DomainEvent;
+import co.com.sofka.domain.generic.Incremental;
 
 public class PrimerLugarAsignado extends DomainEvent implements Incremental {
     private final JugadorId jugadorId;

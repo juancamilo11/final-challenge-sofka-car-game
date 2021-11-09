@@ -1,9 +1,10 @@
 package co.com.sofka.cargame.domain.juego.command;
 
 import co.com.sofka.cargame.domain.juego.values.JuegoId;
-import co.com.sofka.cargame.domain.generic.Command;
 
-public class InicarJuegoCommand implements Command {
+import co.com.sofka.domain.generic.Command;
+
+public class InicarJuegoCommand extends Command {
     private JuegoId juegoId;
 
     public InicarJuegoCommand() {

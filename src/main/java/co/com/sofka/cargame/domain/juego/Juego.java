@@ -3,8 +3,9 @@ package co.com.sofka.cargame.domain.juego;
 import co.com.sofka.cargame.domain.Color;
 import co.com.sofka.cargame.domain.juego.events.*;
 import co.com.sofka.cargame.domain.juego.values.*;
-import co.com.sofka.cargame.domain.generic.AggregateEvent;
-import co.com.sofka.cargame.domain.generic.DomainEvent;
+
+import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,7 @@
 package co.com.sofka.cargame.domain.juego.values;
 
-import co.com.sofka.cargame.domain.generic.Identity;
+
+import co.com.sofka.domain.generic.Identity;
 
 public class JuegoId extends Identity {
     private JuegoId(String uuid) {

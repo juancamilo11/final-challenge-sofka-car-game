@@ -1,8 +1,9 @@
 package co.com.sofka.cargame.domain.carro.events;
 
 import co.com.sofka.cargame.domain.carro.values.Cedula;
-import co.com.sofka.cargame.domain.generic.DomainEvent;
-import co.com.sofka.cargame.domain.generic.Incremental;
+
+import co.com.sofka.domain.generic.DomainEvent;
+import co.com.sofka.domain.generic.Incremental;
 
 public class ConductorAsignado extends DomainEvent implements Incremental {
     private final String nombre;

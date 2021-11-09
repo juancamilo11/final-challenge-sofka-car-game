@@ -4,7 +4,8 @@ package co.com.sofka.cargame.domain.juego;
 import co.com.sofka.cargame.domain.Color;
 import co.com.sofka.cargame.domain.juego.values.JugadorId;
 import co.com.sofka.cargame.domain.juego.values.Nombre;
-import co.com.sofka.cargame.domain.generic.Entity;
+
+import co.com.sofka.domain.generic.Entity;
 
 public class Jugador extends Entity<JugadorId> {
     private final Nombre nombre;
