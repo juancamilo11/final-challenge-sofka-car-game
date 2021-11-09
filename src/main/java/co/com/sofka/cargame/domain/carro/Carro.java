@@ -8,13 +8,13 @@ import co.com.sofka.cargame.domain.carro.events.KilometrajeCambiado;
 import co.com.sofka.cargame.domain.carro.values.CarroId;
 import co.com.sofka.cargame.domain.carro.values.Cedula;
 import co.com.sofka.cargame.domain.juego.values.JuegoId;
-import co.com.sofka.cargame.domain.generic.AggregateRoot;
-import co.com.sofka.cargame.domain.generic.DomainEvent;
+import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
 import java.awt.*;
 import java.util.List;
 
-public class Carro extends AggregateRoot {
+public class Carro extends AggregateEvent<CarroId> {
 
     protected Conductor conductor;
     protected Integer distancia;
@@ -22,6 +22,7 @@ public class Carro extends AggregateRoot {
     protected JuegoId juegoId;
 
     public Carro(CarroId carroId, JuegoId juegoId, Color color) {
+        super(carroId);
         appendChange(new CarroCreado(carroId, juegoId, color)).apply();
     }
 

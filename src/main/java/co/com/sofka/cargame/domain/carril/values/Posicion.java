@@ -1,6 +1,7 @@
 package co.com.sofka.cargame.domain.carril.values;
 
-import co.com.sofka.cargame.domain.generic.ValueObject;
+
+import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 

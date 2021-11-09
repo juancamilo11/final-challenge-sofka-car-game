@@ -1,8 +1,9 @@
 package co.com.sofka.cargame.domain.carril.events;
 
 import co.com.sofka.cargame.domain.carro.values.CarroId;
-import co.com.sofka.cargame.domain.generic.DomainEvent;
-import co.com.sofka.cargame.domain.generic.Incremental;
+
+import co.com.sofka.domain.generic.DomainEvent;
+import co.com.sofka.domain.generic.Incremental;
 
 public class CarroAgregadoACarrail extends DomainEvent implements Incremental {
     private final CarroId carroId;

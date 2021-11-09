@@ -5,7 +5,7 @@ import co.com.sofka.cargame.domain.carril.events.CarroAgregadoACarrail;
 import co.com.sofka.cargame.domain.carril.events.CarroDesplazado;
 import co.com.sofka.cargame.domain.carril.events.CarroFinalizoSuRecorrido;
 import co.com.sofka.cargame.domain.carril.values.Posicion;
-import co.com.sofka.cargame.domain.generic.EventChange;
+import co.com.sofka.domain.generic.EventChange;
 
 import java.util.Optional;
 

@@ -1,7 +1,8 @@
 package co.com.sofka.cargame.domain.carril.events;
 
 import co.com.sofka.cargame.domain.juego.values.JuegoId;
-import co.com.sofka.cargame.domain.generic.DomainEvent;
+
+import co.com.sofka.domain.generic.DomainEvent;
 
 public class CarrilCreado extends DomainEvent {
 

@@ -1,10 +1,11 @@
 package co.com.sofka.cargame.domain.juego.command;
 
-import co.com.sofka.cargame.domain.generic.Command;
+
+import co.com.sofka.domain.generic.Command;
 
 import java.util.Map;
 
-public class CrearJuegoCommand implements Command {
+public class CrearJuegoCommand extends Command {
     private Integer kilometros;
     private Map<String, String> jugadores;
 
@@ -34,4 +35,11 @@ public class CrearJuegoCommand implements Command {
         this.kilometros = kilometros;
     }
 
+    @Override
+    public String toString() {
+        return "CrearJuegoCommand{" +
+                "kilometros=" + kilometros +
+                ", jugadores=" + jugadores +
+                '}';
+    }
 }
