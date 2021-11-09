@@ -1,4 +1,4 @@
-package co.com.sofka.domain.generic;
+package co.com.sofka.cargame.domain.generic;
 
 import co.com.sofka.wsscore.infra.generic.DeserializeException;
 import co.com.sofka.wsscore.infra.generic.EventSerializer;

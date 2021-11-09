@@ -1,4 +1,4 @@
-package co.com.sofka.domain.generic;
+package co.com.sofka.cargame.domain.generic;
 
 import java.util.HashSet;
 import java.util.LinkedList;

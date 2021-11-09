@@ -1,4 +1,4 @@
-package co.com.sofka;
+package co.com.sofka.cargame;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
