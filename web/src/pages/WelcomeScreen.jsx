@@ -6,7 +6,7 @@ const WelcomeScreen = () => {
     <div className="container welcome-container">
       <div class="col text-center">
         <img
-          className=""
+          className="mt-4"
           src={process.env.PUBLIC_URL + "/assets/img-home.png"}
           alt="img"
         />

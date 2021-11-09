@@ -28,7 +28,7 @@ const PlayerCard = ({ id, name, phoneNumber, email, address }) => {
               <small className="text-muted"> {address} </small>
             </p>
 
-            <Link to={`./player/${id}`}>Más...</Link>
+            <Link to={`./player/${id}`}>Ver detalles del jugador...</Link>
           </div>
         </div>
       </div>

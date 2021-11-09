@@ -46,6 +46,13 @@ const playerList = [
     email: "ana@gmail.com",
     address: "crra 222 #822-21",
   },
+  {
+    id: 7,
+    name: "Camilo",
+    phoneNumber: "31223456",
+    email: "juan@gmail.com",
+    address: "crra 15 #8-21",
+  },
 ];
 
 const initialState = {
