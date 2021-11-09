@@ -1,20 +1,29 @@
-package co.com.sofka.cargame.domain.juego.events;
+package dev.j3c.sofkau.cleanarch.domain.juego.events;
 
-import co.com.sofka.cargame.domain.juego.values.Pista;
-
-import co.com.sofka.domain.generic.DomainEvent;
+import dev.j3c.sofkau.cleanarch.domain.generic.DomainEvent;
 
 public class JuegoCreado extends DomainEvent {
-    private final Pista pista;
 
+    private String juegoId;
+    private Integer kilometros;
+    private Integer numeroDeCarriles;
 
-    public JuegoCreado(Pista pista) {
-        super("juego.JuegoCreado");
-        this.pista = pista;
+    public JuegoCreado(String id, Integer kilometros, Integer numeroDeCarriles) {
+        super("sofkau.juego.juegocreado");
+        this.juegoId = id;
+        this.kilometros = kilometros;
+        this.numeroDeCarriles = numeroDeCarriles;
     }
 
-    public Pista getPista() {
-        return pista;
+    public String getJuegoId() {
+        return juegoId;
     }
 
+    public Integer getKilometros() {
+        return kilometros;
+    }
+
+    public Integer getNumeroDeCarriles() {
+        return numeroDeCarriles;
+    }
 }

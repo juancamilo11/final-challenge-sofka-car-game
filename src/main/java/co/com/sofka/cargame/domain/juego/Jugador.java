@@ -1,35 +1,17 @@
-package co.com.sofka.cargame.domain.juego;
+package dev.j3c.sofkau.cleanarch.domain.juego;
 
+public class Jugador{
 
-import co.com.sofka.cargame.domain.Color;
-import co.com.sofka.cargame.domain.juego.values.JugadorId;
-import co.com.sofka.cargame.domain.juego.values.Nombre;
+    private final String nombre;
+    private final String cedula;
 
-import co.com.sofka.domain.generic.Entity;
-
-public class Jugador extends Entity<JugadorId> {
-    private final Nombre nombre;
-    private final Color color;
-    private Integer puntos;
-
-    public Jugador(JugadorId entityId, Nombre nombre, Color color) {
-        super(entityId);
+    public Jugador(String nombre, String cedula) {
         this.nombre = nombre;
-        this.color = color;
-        this.puntos = 0;
+        this.cedula = cedula;
     }
 
-    public Nombre nombre() {
+    public String Nombre() {
         return nombre;
     }
-
-    public Color color() {
-        return color;
-    }
-
-    public void asignarPuntos(Integer puntos) {
-        this.puntos = +puntos;
-    }
-
 
 }

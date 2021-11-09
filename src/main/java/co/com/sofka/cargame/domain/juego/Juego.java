@@ -1,73 +1,53 @@
-package co.com.sofka.cargame.domain.juego;
+package dev.j3c.sofkau.cleanarch.domain.juego;
 
-import co.com.sofka.cargame.domain.Color;
-import co.com.sofka.cargame.domain.juego.events.*;
-import co.com.sofka.cargame.domain.juego.values.*;
+import dev.j3c.sofkau.cleanarch.domain.generic.AggregateRoot;
+import dev.j3c.sofkau.cleanarch.domain.generic.DomainEvent;
+import dev.j3c.sofkau.cleanarch.domain.generic.EventChange;
+import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoCreado;
+import dev.j3c.sofkau.cleanarch.domain.juego.events.JugadorAnadido;
 
-import co.com.sofka.domain.generic.AggregateEvent;
-import co.com.sofka.domain.generic.DomainEvent;
-
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+public class Juego extends AggregateRoot implements EventChange {
 
-public class Juego extends AggregateEvent<JuegoId> {
+    private Map<String, Jugador> jugadores;
+    private Integer kilometros;
+    private Integer numeroDeCarriles;
+    private Boolean jugando;
+    private Podio podio;
 
-    protected Map<JugadorId, Jugador> jugadores;
-    protected Pista pista;
-    protected Boolean jugando;
-    protected Podio podio;
-
-    public Juego(JuegoId id, Pista pista) {
+    public Juego(String id, Integer kilometros, Integer numeroDeCarriles) {
         super(id);
-        appendChange(new JuegoCreado(pista)).apply();
+        appendChange(new JuegoCreado(id,kilometros, numeroDeCarriles)).apply();
     }
 
-    private Juego(JuegoId id) {
+    private Juego(String id) {
         super(id);
-        subscribe(new JuegoEventChange(this));
+        subscribe(this);
+
+        listener((JuegoCreado event) -> {
+            this.kilometros = event.getKilometros();
+            this.numeroDeCarriles = event.getNumeroDeCarriles();
+            this.jugando = false;
+            this.jugadores = new HashMap<>();
+            this.podio = new Podio();
+        });
+
+        listener((JugadorAnadido event) -> {
+            jugadores.put(event.getCedula(), new Jugador(event.getNombre(), event.getCedula()));
+        });
     }
 
-    public static Juego from(JuegoId id, List<DomainEvent> events) {
-        var juego = new Juego(id);
+    public static Juego from(String juegoId, List<DomainEvent> events){
+        var juego = new Juego(juegoId);
         events.forEach(juego::applyEvent);
         return juego;
     }
 
-    public void crearJugador(JugadorId jugadorId, Nombre nombre, Color color) {
-        appendChange(new JugadorCreado(jugadorId, nombre, color)).apply();
-    }
-
-    public void asignarPrimerLugar(JugadorId jugadorId) {
-        appendChange(new PrimerLugarAsignado(jugadorId)).apply();
-    }
-
-    public void asignarSegundoLugar(JugadorId jugadorId) {
-        appendChange(new SegundoLugarAsignado(jugadorId)).apply();
-    }
-
-    public void asignarTercerLugar(JugadorId jugadorId) {
-        appendChange(new TercerLugarAsignado(jugadorId)).apply();
-        appendChange(new JuegoFinalizado(podio)).apply();
-    }
-
-    public void iniciarJuego() {
-        appendChange(new JuegoIniciado()).apply();
-    }
-
-    public Map<JugadorId, Jugador> jugadores() {
-        return Map.copyOf(jugadores);
-    }
-
-    public Pista.Values pista() {
-        return pista.value();
-    }
-
-    public Boolean jugando() {
-        return jugando;
-    }
-
-    public Podio.Props podio() {
-        return podio.value();
+    public void anadirJugador(String cedula, String nombre){
+        System.out.println("anadir jugador metodo");
+        appendChange(new JugadorAnadido(cedula, nombre)).apply();
     }
 }
