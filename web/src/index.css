@@ -76,3 +76,7 @@ code {
 .select-row {
   width: 100px;
 }
+
+.input-select {
+  width: 100%;
+}

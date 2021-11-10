@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { GameContext } from "../../game/gameContext";
-import { useForm } from "../hooks/useForm";
 import photos_data from "../../data/PHOTOS_DATA";
 import car_data from "../../data/CAR_DATA";
 import { validateInputPlayerForm } from "../../data/constants";
 import useCounter from "../hooks/useCounter";
-import { addPlayerToGameAction } from "../../actions/gameActions";
+// import { addPlayerToGameAction } from "../../actions/gameActions";
+import types from "../../type/types";
 
 const PlayerInputForm = () => {
   const { game, dispatch } = useContext(GameContext);
-  const [counter, increment, decrement, reset] = useCounter(1);
+  const [counter, increment] = useCounter(1);
   const [formValues, setFormValues] = useState({
     username: "",
     playerName: "",
@@ -28,16 +28,23 @@ const PlayerInputForm = () => {
     console.log(formValues);
     const result = validateInputPlayerForm(formValues);
     if (result === true) {
-      const newPlayer = {
-        juegoId: game.gameId,
-        cedula: username,
-        nombre: playerName,
-      };
+      // const newPlayer = {
+      //   juegoId: game.gameId,
+      //   cedula: username,
+      //   nombre: playerName,
+      // };
 
-      addPlayerToGameAction(newPlayer).then((result) => {
-        // result.status === 200 && dispatch({action:})
-        console.log(result);
+      // addPlayerToGameAction(newPlayer).then((result) => {
+      // result.status === 200 &&
+      dispatch({
+        type: types.addPlayerToGame,
+        payload: {
+          game,
+          data: { ...formValues },
+        },
       });
+
+      // });
 
       setSuccessMessage("The player has been successfuly added");
       increment();
@@ -116,11 +123,11 @@ const PlayerInputForm = () => {
                     key={pic.id}
                     onClick={() => handleSelectInputChange(pic, "pic")}
                   >
-                    <a href="#">
-                      <img src={pic.url} width="100px" />
+                    <div className="m-3">
+                      <img src={pic.url} width="100px" alt={pic.name} />
                       <span className="ml-5 text-center">{pic.name}</span>
                       <span className=""></span>
-                    </a>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -147,27 +154,34 @@ const PlayerInputForm = () => {
               </button>
               <ul className="dropdown-menu">
                 {car_data.map((carPhoto) => (
-                  <li key={carPhoto.id}>
+                  <li key={carPhoto.id} title={carPhoto.description}>
                     <a
-                      href="#"
+                      href="#hola"
+                      className="m-3 input-select"
                       onClick={() => handleSelectInputChange(carPhoto, "car")}
                     >
                       <table className="table">
-                        <tr>
-                          <th scope="row" className="select-row">
-                            <img src={carPhoto.url} width="100px" />
-                          </th>
-                          <td className="select-row">
-                            <span className="ml-5 text-center" width="100px">
-                              {carPhoto.name}
-                            </span>
-                          </td>
-                          <td className="select-row">
-                            <span className="ml-5 text-center" width="100px">
-                              {carPhoto.description}
-                            </span>
-                          </td>
-                        </tr>
+                        <tbody>
+                          <tr>
+                            <th scope="row" className="select-row">
+                              <img
+                                src={carPhoto.url}
+                                width="100px"
+                                alt={carPhoto.description}
+                              />
+                            </th>
+                            <td className="select-row">
+                              <span className="ml-5 text-center" width="100px">
+                                {carPhoto.name}
+                              </span>
+                            </td>
+                            <td className="select-row">
+                              <span className="ml-5 text-center" width="100px">
+                                {carPhoto.description}
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
                       </table>
                     </a>
                   </li>
@@ -215,15 +229,28 @@ const PlayerInputForm = () => {
             </thead>
             <tbody>
               {game.playerList.map((player) => (
-                <tr key={player.id}>
-                  <td scope="row">{player.lane}</td>
+                <tr key={player.username}>
+                  <th scope="row">{player.lane}</th>
                   <td>
                     <div className="d-flex justify-content-around">
-                      <img src={player.pic} alt={player.pic.name} />
-                      <p>{player.username}</p>
+                      <img
+                        src={player.pic.url}
+                        alt={player.pic.name}
+                        width="40"
+                      />
+                      <p>{player.playerName}</p>
                     </div>
                   </td>
-                  <td>Otto</td>
+                  <td>
+                    <div className="d-flex justify-content-around">
+                      <img
+                        src={player.car.url}
+                        alt={player.car.name}
+                        width="40"
+                      />
+                      <p>{player.car.name}</p>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

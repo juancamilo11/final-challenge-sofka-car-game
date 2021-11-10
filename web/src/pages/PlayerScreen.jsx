@@ -8,7 +8,7 @@ const PlayerScreen = ({ history }) => {
   const { game } = useContext(GameContext);
 
   const getPlayerById = () =>
-    game.playerList.find((player) => player.id == parseInt(playerId));
+    game.playerList.find((player) => player.id === parseInt(playerId));
 
   const player = useMemo(() => getPlayerById(playerId), [playerId]);
   console.log(player);

@@ -1,12 +1,5 @@
 import types from "../type/types";
 
-// const state = {
-//     playing:false,
-//     playerList: [],
-//     numRound:0,
-//     finished:false
-// }
-
 export const gameReducer = (state = {}, action) => {
   switch (action.type) {
     case types.resumeGame:
@@ -20,17 +13,18 @@ export const gameReducer = (state = {}, action) => {
         playing: false,
       };
     case types.createGame:
-      const { game, data } = action.payload;
-      const { gameId, lengthKm, numPlayers } = data;
-      const objRetorno = {
-        ...game,
-        gameId,
-        lengthKm,
-        numPlayers,
+      return {
+        ...action.payload.game,
+        gameId: action.payload.data.gameId,
+        lengthKm: action.payload.data.gameId,
+        numPlayers: action.payload.data.numPlayers,
       };
-      console.log("obje retorno:");
-      console.log(objRetorno);
-      return objRetorno;
+    case types.addPlayerToGame:
+      const { playerList } = action.payload.game;
+      return {
+        ...action.payload.game,
+        playerList: [...playerList, action.payload.data],
+      };
     default:
       return state;
   }
