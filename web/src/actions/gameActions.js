@@ -4,7 +4,6 @@ export const createGameAction = async (newGame) => {
   try {
     const res = await fetch(`http://localhost:8080/api/crearJuego`, {
       method: "POST",
-      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
