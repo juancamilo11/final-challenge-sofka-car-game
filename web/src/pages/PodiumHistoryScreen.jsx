@@ -1,5 +1,6 @@
 import React from "react";
 import Podium from "../components/podium/Podium";
+import { Footer } from "../components/ui/Footer";
 import NavbarSecundary from "../components/ui/NavbarSecundary";
 import getAllPodiums from "../data/podiumList";
 
@@ -21,6 +22,7 @@ const PodiumHistoryScreen = () => {
           No podiums found, Start by playing a new race...
         </h2>
       )}
+      <Footer />
     </div>
   );
 };

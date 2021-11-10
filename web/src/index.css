@@ -60,3 +60,11 @@ code {
   margin-left: 35%;
   margin-left: 35%;
 }
+
+/* Input container */
+.input-container {
+  padding: 20px;
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+}
