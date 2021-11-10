@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import {
   BrowserRouter as Router,
@@ -6,8 +6,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import PlayerCard from "../components/player/PlayerCard";
+import PlayerList from "../components/player/PlayerList";
 import GameScreen from "../pages/GameScreen";
-import PlayerList from "../pages/PlayerList";
+import PlayerScreen from "../pages/PlayerScreen";
 import PodiumHistoryScreen from "../pages/PodiumHistoryScreen";
 import PodiumScreen from "../pages/PodiumScreen";
 import SetupGameScreen from "../pages/SetupGameScreen";
@@ -24,6 +26,8 @@ const AppRouter = () => {
           <Route exact path="/podium-list" component={PodiumHistoryScreen} />
           <Route exact path="/setup-game" component={SetupGameScreen} />
           <Route exact path="/player-list" component={PlayerList} />
+          <Route exact path="/player-card" component={PlayerCard} />
+          <Route exact path="/player/:id" component={PlayerScreen} />
 
           <Redirect to="/" />
         </Switch>
