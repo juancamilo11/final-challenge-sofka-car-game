@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
 import NavbarSecundary from "../components/ui/NavbarSecundary";
 import { GameContext } from "../game/gameContext";
 
@@ -43,23 +43,20 @@ const PlayerScreen = ({ history }) => {
           <h3> {name} </h3>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              {" "}
-              <b> Alter ego: </b> {phoneNumber}{" "}
+              <b> Alter ego: </b> {phoneNumber}
             </li>
             <li className="list-group-item">
-              {" "}
-              <b> Publisher: </b> {email}{" "}
+              <b> Publisher: </b> {email}
             </li>
             <li className="list-group-item">
-              {" "}
-              <b> First appearance: </b> {address}{" "}
+              <b> First appearance: </b> {address}
             </li>
           </ul>
           <h5> Characters </h5>
           <p> {email} </p>
-          <button className="btn btn-outline-info" onClick={handleReturn}>
-            Return
-          </button>
+          <Link className="btn btn-primary" to="/player-list">
+            Go back to list <i class="fas fa-clipboard-list button-icon"></i>
+          </Link>
         </div>
       </div>
     </>

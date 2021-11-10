@@ -35,9 +35,6 @@ const NavbarSecundary = () => {
 
       <div>
         <ul className="navbar-nav ml-auto">
-          <Link className="btn btn-primary mx-4" to="/player-list">
-            Go back to list <i class="fas fa-clipboard-list button-icon"></i>
-          </Link>
           {!game.finished && (
             <Link className="btn btn-primary" to="/game">
               Go back to game <i class="fas fa-car button-icon"></i>
