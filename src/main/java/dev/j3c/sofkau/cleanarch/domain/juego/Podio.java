@@ -24,7 +24,7 @@ public class Podio {
         return new Podio(jugador, segundoLugar, tercerLugar);
     }
 
-    public Podio asignarSegundorLugar(Jugador jugador){
+    public Podio asignarSegundoLugar(Jugador jugador){
         return new Podio(primerLugar, jugador, tercerLugar);
     }
 
@@ -46,5 +46,17 @@ public class Podio {
 
     public Boolean estaLleno(){
         return Objects.nonNull(primerLugar) && Objects.nonNull(segundoLugar) && Objects.nonNull(tercerLugar);
+    }
+
+    public Boolean primerLugarLibre(){
+        return Objects.isNull(primerLugar);
+    }
+
+    public Boolean segundoLugarLibre(){
+        return Objects.isNull(segundoLugar);
+    }
+
+    public Boolean tercerLugarLibre(){
+        return Objects.isNull(tercerLugar);
     }
 }

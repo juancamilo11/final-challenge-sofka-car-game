@@ -20,6 +20,7 @@ public abstract class UseCaseHandle {
     private MessageService messageService;
 
     public void saveJuego(String juegoID, List<DomainEvent> events) {
+        System.out.println("saveJuego");
         events.stream().map(event -> {
             String eventBody = EventSerializer.instance().serialize(event);
             return new StoredEvent(event.getClass().getTypeName(), new Date(), eventBody);

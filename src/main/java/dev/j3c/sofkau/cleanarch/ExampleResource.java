@@ -1,4 +1,4 @@
-package co.com.sofka.cargame;
+package dev.j3c.sofkau.cleanarch;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
