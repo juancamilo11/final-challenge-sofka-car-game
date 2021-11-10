@@ -3,10 +3,7 @@ package dev.j3c.sofkau.cleanarch.domain.juego;
 import dev.j3c.sofkau.cleanarch.domain.generic.AggregateRoot;
 import dev.j3c.sofkau.cleanarch.domain.generic.DomainEvent;
 import dev.j3c.sofkau.cleanarch.domain.generic.EventChange;
-import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoCreado;
-import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoFinalizado;
-import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoIniciado;
-import dev.j3c.sofkau.cleanarch.domain.juego.events.JugadorAnadido;
+import dev.j3c.sofkau.cleanarch.domain.juego.events.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,12 +14,17 @@ public class Juego extends AggregateRoot implements EventChange {
     private Map<String, Jugador> jugadores;
     private Integer kilometros;
     private Integer numeroDeCarriles;
+    private Integer posicionFinalActual;
     private Boolean jugando;
     private Podio podio;
 
     public Juego(String id, Integer kilometros, Integer numeroDeCarriles) {
         super(id);
         appendChange(new JuegoCreado(id,kilometros, numeroDeCarriles)).apply();
+    }
+
+    public Integer getPosicionFinalActual() {
+        return posicionFinalActual;
     }
 
     private Juego(String id) {
@@ -41,7 +43,7 @@ public class Juego extends AggregateRoot implements EventChange {
             jugadores.put(event.getCedula(), new Jugador(event.getNombre(), event.getCedula()));
         });
 
-        /*listener((PrimerLugarAsignado event) -> {
+        listener((PrimerLugarAsignado event) -> {
             if (this.jugando) {
                 Jugador jugadorGanador = this.jugadores.get(event.getJugadorId());
                 this.podio = this.podio.asignarPrimerLugar(jugadorGanador);
@@ -50,23 +52,23 @@ public class Juego extends AggregateRoot implements EventChange {
             }
         });
 
-        listener((SegundoLugarAsignado event) -> {
+        /*listener((SegundoLugarAsignado event) -> {
             if (this.jugando) {
                 Jugador jugadorGanador = this.jugadores.get(event.getJugadorId());
                 this.podio = this.podio.asignarSegundoLugar(jugadorGanador);
             } else {
                 throw new IllegalArgumentException("No puede asignar al podio no esta en marcha el juego");
             }
-        });
+        });*/
 
-        listener((TercerLugarAsignado event) -> {
+        /*listener((TercerLugarAsignado event) -> {
             if (this.jugando) {
                 Jugador jugadorGanador = this.jugadores.get(event.getJugadorId());
                 this.podio = this.podio.asignarTercerLugar(jugadorGanador);
             } else {
                 throw new IllegalArgumentException("No puede asignar al podio no esta en marcha el juego");
             }
-        })*/;
+        });*/
 
         listener((JuegoIniciado event) -> {
             this.jugando = true;
@@ -88,6 +90,10 @@ public class Juego extends AggregateRoot implements EventChange {
         appendChange(new JugadorAnadido(cedula, nombre)).apply();
     }
 
+    public void setPosicionFinalActual(Integer posicionFinalActual) {
+        this.posicionFinalActual = posicionFinalActual;
+    }
+
     public void iniciarJuego() {
         System.out.println("iniciar juego metodo");
         appendChange(new JuegoIniciado()).apply();
@@ -96,5 +102,14 @@ public class Juego extends AggregateRoot implements EventChange {
     public void finalizarJuego(){
         System.out.println("finalizar juego metodo");
         appendChange(new JuegoFinalizado()).apply();
+    }
+
+    public void asignarPodio(String jugadorId,Integer posicion){
+        if (posicion == 1)
+            appendChange(new PrimerLugarAsignado(jugadorId)).apply();
+        /*if (posicion == 2)
+            appendChange(new SegundoLugarAsignado(jugadorId)).apply();
+        if (posicion == 3)
+            appendChange(new TercerLugarAsignado(jugadorId)).apply();*/
     }
 }

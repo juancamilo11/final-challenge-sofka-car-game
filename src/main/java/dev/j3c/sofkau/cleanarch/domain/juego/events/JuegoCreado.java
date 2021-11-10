@@ -7,6 +7,7 @@ public class JuegoCreado extends DomainEvent {
     private String juegoId;
     private Integer kilometros;
     private Integer numeroDeCarriles;
+    private Integer posicionFinalActual;
     private Boolean state;
 
     public JuegoCreado(String id, Integer kilometros, Integer numeroDeCarriles) {
@@ -14,7 +15,12 @@ public class JuegoCreado extends DomainEvent {
         this.juegoId = id;
         this.kilometros = kilometros;
         this.numeroDeCarriles = numeroDeCarriles;
+        this.posicionFinalActual = 0;
         this.state = false;
+    }
+
+    public Integer getPosicionFinalActual() {
+        return posicionFinalActual;
     }
 
     public String getJuegoId() {

@@ -47,4 +47,16 @@ public class Podio {
     public Boolean estaLleno(){
         return Objects.nonNull(primerLugar) && Objects.nonNull(segundoLugar) && Objects.nonNull(tercerLugar);
     }
+
+    public Boolean primerLugarLibre(){
+        return Objects.isNull(primerLugar);
+    }
+
+    public Boolean segundoLugarLibre(){
+        return Objects.isNull(segundoLugar);
+    }
+
+    public Boolean tercerLugarLibre(){
+        return Objects.isNull(tercerLugar);
+    }
 }

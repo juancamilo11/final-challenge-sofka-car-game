@@ -31,6 +31,7 @@ public class BillHandle {
         document.put("kilometros", event.getKilometros());
         document.put("numeroDeCarriles", event.getNumeroDeCarriles());
         document.put("jugando", event.getState());
+        document.put("posicionfinal", event.getPosicionFinalActual());
         mongoClient.getDatabase("queries").getCollection("juego")
                 .insertOne(new Document(document));
     }
