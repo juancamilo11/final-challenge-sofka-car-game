@@ -82,7 +82,7 @@ public class MessageService {
 
     public void send(Command command) {
         try {
-            System.out.println("send command");
+            System.out.println("send command " + command.getType());
             var message = CommandSerializer.instance().serialize(command);
             var props = new AMQP.BasicProperties.Builder().contentType(command.getClass().getTypeName()).build();
             channel.basicPublish(EXCHANGE, "executor-command", props, message.getBytes(StandardCharsets.UTF_8));

@@ -3,6 +3,8 @@ package dev.j3c.sofkau.cleanarch.infrastructure;
 
 import dev.j3c.sofkau.cleanarch.domain.juego.commands.AnadirJugadorCommand;
 import dev.j3c.sofkau.cleanarch.domain.juego.commands.CrearJuegoCommand;
+import dev.j3c.sofkau.cleanarch.domain.juego.commands.FinalizarJuegoCommand;
+import dev.j3c.sofkau.cleanarch.domain.juego.commands.IniciarJuegoCommand;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -33,6 +35,24 @@ public class CommandController {
     @Path("/anadirJugador")
     public Response executor(AnadirJugadorCommand command) {
         System.out.println("controller");
+        messageService.send(command);
+        return Response.ok().build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/iniciarJuego")
+    public Response executor(IniciarJuegoCommand command) {
+        System.out.println("controller " + command.getJuegoId());
+        messageService.send(command);
+        return Response.ok().build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/finalizarJuego")
+    public Response executor(FinalizarJuegoCommand command) {
+        System.out.println("controller " + command.getJuegoId());
         messageService.send(command);
         return Response.ok().build();
     }

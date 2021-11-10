@@ -24,7 +24,7 @@ public class Podio {
         return new Podio(jugador, segundoLugar, tercerLugar);
     }
 
-    public Podio asignarSegundorLugar(Jugador jugador){
+    public Podio asignarSegundoLugar(Jugador jugador){
         return new Podio(primerLugar, jugador, tercerLugar);
     }
 

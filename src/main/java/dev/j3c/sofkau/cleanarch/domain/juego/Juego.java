@@ -4,6 +4,8 @@ import dev.j3c.sofkau.cleanarch.domain.generic.AggregateRoot;
 import dev.j3c.sofkau.cleanarch.domain.generic.DomainEvent;
 import dev.j3c.sofkau.cleanarch.domain.generic.EventChange;
 import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoCreado;
+import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoFinalizado;
+import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoIniciado;
 import dev.j3c.sofkau.cleanarch.domain.juego.events.JugadorAnadido;
 
 import java.util.HashMap;
@@ -38,6 +40,41 @@ public class Juego extends AggregateRoot implements EventChange {
         listener((JugadorAnadido event) -> {
             jugadores.put(event.getCedula(), new Jugador(event.getNombre(), event.getCedula()));
         });
+
+        /*listener((PrimerLugarAsignado event) -> {
+            if (this.jugando) {
+                Jugador jugadorGanador = this.jugadores.get(event.getJugadorId());
+                this.podio = this.podio.asignarPrimerLugar(jugadorGanador);
+            } else {
+                throw new IllegalArgumentException("No puede asignar al podio no esta en marcha el juego");
+            }
+        });
+
+        listener((SegundoLugarAsignado event) -> {
+            if (this.jugando) {
+                Jugador jugadorGanador = this.jugadores.get(event.getJugadorId());
+                this.podio = this.podio.asignarSegundoLugar(jugadorGanador);
+            } else {
+                throw new IllegalArgumentException("No puede asignar al podio no esta en marcha el juego");
+            }
+        });
+
+        listener((TercerLugarAsignado event) -> {
+            if (this.jugando) {
+                Jugador jugadorGanador = this.jugadores.get(event.getJugadorId());
+                this.podio = this.podio.asignarTercerLugar(jugadorGanador);
+            } else {
+                throw new IllegalArgumentException("No puede asignar al podio no esta en marcha el juego");
+            }
+        })*/;
+
+        listener((JuegoIniciado event) -> {
+            this.jugando = true;
+        });
+
+        listener((JuegoFinalizado event) -> {
+            this.jugando = false;
+        });
     }
 
     public static Juego from(String juegoId, List<DomainEvent> events){
@@ -49,5 +86,15 @@ public class Juego extends AggregateRoot implements EventChange {
     public void anadirJugador(String cedula, String nombre){
         System.out.println("anadir jugador metodo");
         appendChange(new JugadorAnadido(cedula, nombre)).apply();
+    }
+
+    public void iniciarJuego() {
+        System.out.println("iniciar juego metodo");
+        appendChange(new JuegoIniciado()).apply();
+    }
+
+    public void finalizarJuego(){
+        System.out.println("finalizar juego metodo");
+        appendChange(new JuegoFinalizado()).apply();
     }
 }
