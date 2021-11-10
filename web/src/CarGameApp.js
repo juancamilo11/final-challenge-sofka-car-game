@@ -3,6 +3,14 @@ import { GameContext } from "./game/gameContext";
 import { gameReducer } from "./game/gameReducer";
 import AppRouter from "./router/AppRouter";
 
+// {
+//   id: 1,
+//   name: "Camilo",
+//   phoneNumber: "31223456",
+//   email: "juan@gmail.com",
+//   address: "crra 15 #8-21",
+// }
+
 const playerList = [
   {
     id: 1,
@@ -56,10 +64,11 @@ const playerList = [
 ];
 
 const initialState = {
+  gameId: null,
   lengthKm: -1,
   numPlayers: -1,
   playing: false,
-  playerList,
+  playerList: [],
   numRound: -1,
   finished: false,
 };

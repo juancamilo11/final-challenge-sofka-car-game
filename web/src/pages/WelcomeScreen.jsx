@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "../components/hooks/useForm";
-import validValues from "../data/constants";
+import { validValues } from "../data/constants";
 import { GameContext } from "../game/gameContext";
 import swal from "sweetalert";
 import { createGameAction } from "../actions/gameActions";
+import nextId from "react-id-generator";
+import uniqueString from "unique-string";
+import types from "../type/types";
 
 const WelcomeScreen = () => {
   const [step, setStep] = useState(0);
-
   const { game, dispatch } = useContext(GameContext);
   // lengthKm:-1, numPlayers:-1,
   const [values, handleInputChange, reset] = useForm({
@@ -25,18 +27,37 @@ const WelcomeScreen = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validValues(lengthKm, numPlayers)) {
-      createGameAction().then((values) => {
-        console.log(`Status: ${values.status}`);
-        console.log(`Status text: ${values.statusText}`);
-      });
-      swal("Nice job! Let's go ahead!");
+      const juegoId = uniqueString(); //=> 'b4de2a49c8ffa3fbee04446f045483b2'
+      const kilometros = parseInt(lengthKm);
+      const numeroDeCarriles = parseInt(numPlayers);
+      const newGame = {
+        ...game,
+        gameId: juegoId,
+        lengthKm: kilometros,
+        numPlayers: numeroDeCarriles,
+      };
+
+      
+      console.log(JSON.stringify(newGame));
+      createGameAction(newGame)
+        .then((values) => {
+          if (values.status === 200) {
+            //Aquí se podría hacer el dispatch
+            swal("Nice job! Let's go ahead!");
+            dispatch({ action: types.createGame, payload: newGame });
+          }
+        })
+        .catch((err) => {
+          swal("Error:" + err);
+        });
     } else {
+      swal("Invalid inputs, please try again.");
     }
     reset();
   };
 
   return (
-    <div className="container welcome-container">
+    <div className="container welcome-container ms-3 animate__animated animate__fadeIn">
       <div className="col text-center">
         <img
           className="mt-4"
@@ -58,9 +79,9 @@ const WelcomeScreen = () => {
       )}
 
       {step === 1 && (
-        <div className="col text-center mt-5">
+        <div className="col text-center animate__animated animate__fadeIn">
           <h3 className="display-5">
-            Please fill the field for the race configuration
+            Please fill the fields for the race configuration
           </h3>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
