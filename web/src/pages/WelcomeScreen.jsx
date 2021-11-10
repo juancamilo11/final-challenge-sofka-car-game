@@ -25,18 +25,32 @@ const WelcomeScreen = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validValues(lengthKm, numPlayers)) {
-      createGameAction().then((values) => {
-        console.log(`Status: ${values.status}`);
-        console.log(`Status text: ${values.statusText}`);
-      });
-      swal("Nice job! Let's go ahead!");
+      const juegoId = "1234567";
+      const kilometros = parseInt(lengthKm);
+      const numeroDeCarriles = parseInt(numPlayers);
+      const newGame = {
+        type: "sofkau.juego.crearjuego",
+        juegoId,
+        kilometros,
+        numeroDeCarriles,
+      };
+      console.log(JSON.stringify(newGame));
+      createGameAction(newGame)
+        .then((res) => {
+          console.log(res);
+          swal("Nice job! Let's go ahead!");
+        })
+        .catch((err) => {
+          swal("Error:" + err);
+        });
     } else {
+      swal("Invalid inputs, please try again.");
     }
     reset();
   };
 
   return (
-    <div className="container welcome-container">
+    <div className="container welcome-container ms-3 animate__animated animate__fadeIn">
       <div className="col text-center">
         <img
           className="mt-4"
@@ -58,7 +72,7 @@ const WelcomeScreen = () => {
       )}
 
       {step === 1 && (
-        <div className="col text-center mt-5">
+        <div className="col text-center animate__animated animate__fadeIn">
           <h3 className="display-5">
             Please fill the field for the race configuration
           </h3>
