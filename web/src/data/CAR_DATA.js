@@ -1,82 +1,72 @@
 const car_data = [
   {
     id: 1,
-    name: "car_name1",
+    name: "Volvo 800 T4",
     availableAtLevel: 1,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "A small car, but unmatched power!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car1.png",
   },
   {
     id: 2,
-    name: "car_name2",
+    name: "Maserati 250F",
     availableAtLevel: 2,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "A good car to reach your limits, absolute power!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car2.png",
   },
   {
     id: 3,
-    name: "car_name3",
+    name: "car_name3Mazda RX-7",
     availableAtLevel: 3,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "An awesome car to earn respect on the road!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car3.png",
   },
   {
     id: 4,
-    name: "car_name4",
+    name: "Aston Martin DB9",
     availableAtLevel: 4,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "Unmatched performance, this is the boss on the road!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car4.png",
   },
   {
     id: 5,
-    name: "car_name5",
+    name: "Dodge Viper STR-10",
     availableAtLevel: 5,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "Be careful when driving this car, it is pure dynamite!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car5.png",
   },
   {
     id: 6,
-    name: "car_name6",
+    name: "Corvette CS6",
     availableAtLevel: 6,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "A toy full of power, this is absolutelly a big gun!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car6.png",
   },
   {
     id: 7,
-    name: "car_name7",
+    name: "McLaren F1 GTR",
     availableAtLevel: 7,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "Performance and power, this car is all you need!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car7.png",
   },
   {
     id: 8,
-    name: "car_name8",
+    name: "McLaren MP4/4",
     availableAtLevel: 8,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "A beast on the road, you won't be able to handle it!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car8.png",
   },
   {
     id: 9,
-    name: "car_name9",
+    name: "Porsche 911",
     availableAtLevel: 9,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "A great car that will amaze you every time you drive it!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car9.png",
   },
   {
     id: 10,
-    name: "car_name10",
+    name: "Porsche carrera GT",
     availableAtLevel: 10,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "This is the fastest car ever build in the whole world!",
     url: process.env.PUBLIC_URL + "/assets/img-car/car10.png",
   },
 ];

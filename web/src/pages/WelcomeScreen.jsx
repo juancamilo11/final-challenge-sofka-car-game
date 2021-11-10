@@ -74,7 +74,7 @@ const WelcomeScreen = () => {
       {step === 1 && (
         <div className="col text-center animate__animated animate__fadeIn">
           <h3 className="display-5">
-            Please fill the field for the race configuration
+            Please fill the fields for the race configuration
           </h3>
           <form onSubmit={handleSubmit}>
             <div className="input-container">

@@ -13,5 +13,14 @@ const validValues = (lengthKm, numPlayers) => {
   return true;
 };
 
-export { game_constants };
-export default validValues;
+const validateInputPlayerForm = (username) => {
+  if (username.trim().length < 3 || username.trim().length > 20) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export { validateInputPlayerForm };
+export default game_constants;
+export { validValues };

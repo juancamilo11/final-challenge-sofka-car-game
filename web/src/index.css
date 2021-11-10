@@ -68,3 +68,11 @@ code {
   margin-left: 30%;
   margin-right: 30%;
 }
+
+.dropdown {
+  width: 50%;
+}
+
+.select-row {
+  width: 100px;
+}
