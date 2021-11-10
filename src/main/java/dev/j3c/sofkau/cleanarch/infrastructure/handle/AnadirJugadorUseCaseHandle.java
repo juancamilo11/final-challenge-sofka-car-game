@@ -16,7 +16,7 @@ public class AnadirJugadorUseCaseHandle extends UseCaseHandle {
         this.anadirJugadorUseCase = anadirJugadorUseCase;
     }
 
-    @ConsumeEvent(value="sofkau.juego.anadirjugador", blocking = true)
+    @ConsumeEvent(value="sofkau.juego.anadirjugador")
     void consume(AnadirJugadorCommand command){
         var events = anadirJugadorUseCase.apply(command);
         saveJuego(command.getJuegoId(), events);
