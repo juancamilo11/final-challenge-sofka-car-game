@@ -4,13 +4,16 @@ const game_constants = {
 };
 
 const validValues = (lengthKm, numPlayers) => {
-  if (lengthKm <= 0 || lengthKm > game_constants.MAX_LENGTH) {
-    return false;
+  console.log(parseInt(lengthKm));
+  if (
+    lengthKm > 0 &&
+    lengthKm <= game_constants.MAX_LENGTH &&
+    numPlayers >= 3 &&
+    numPlayers <= game_constants.MAX_NUM_PLAYERS
+  ) {
+    return true;
   }
-  if (numPlayers <= 0 || numPlayers > game_constants.MAX_NUM_PLAYERS) {
-    return false;
-  }
-  return true;
+  return false;
 };
 
 const validateInputPlayerForm = (formValues) => {

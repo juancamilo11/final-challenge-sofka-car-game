@@ -47,7 +47,7 @@ const PlayerInputForm = () => {
       }, 1500);
       setError(false);
     } else {
-      setError("Username, pic and photo are required");
+      setError("Username, name, pic and car are required");
     }
   };
 

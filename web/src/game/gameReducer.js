@@ -20,7 +20,17 @@ export const gameReducer = (state = {}, action) => {
         playing: false,
       };
     case types.createGame:
-
+      const { game, data } = action.payload;
+      const { gameId, lengthKm, numPlayers } = data;
+      const objRetorno = {
+        ...game,
+        gameId,
+        lengthKm,
+        numPlayers,
+      };
+      console.log("obje retorno:");
+      console.log(objRetorno);
+      return objRetorno;
     default:
       return state;
   }

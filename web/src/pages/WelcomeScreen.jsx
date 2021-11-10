@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, history } from "react-router-dom";
 import { useForm } from "../components/hooks/useForm";
 import { validValues } from "../data/constants";
 import { GameContext } from "../game/gameContext";
@@ -9,7 +9,7 @@ import nextId from "react-id-generator";
 import uniqueString from "unique-string";
 import types from "../type/types";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ history }) => {
   const [step, setStep] = useState(0);
   const { game, dispatch } = useContext(GameContext);
   // lengthKm:-1, numPlayers:-1,
@@ -37,19 +37,29 @@ const WelcomeScreen = () => {
         numPlayers: numeroDeCarriles,
       };
 
-      
-      console.log(JSON.stringify(newGame));
-      createGameAction(newGame)
-        .then((values) => {
-          if (values.status === 200) {
-            //Aquí se podría hacer el dispatch
-            swal("Nice job! Let's go ahead!");
-            dispatch({ action: types.createGame, payload: newGame });
-          }
-        })
-        .catch((err) => {
-          swal("Error:" + err);
-        });
+      // console.log(JSON.stringify(newGame));
+      // createGameAction(newGame)
+      //   .then((values) => {
+      //     if (values.status === 200) {
+      //       //Aquí se podría hacer el dispatch
+      //       swal("Nice job! Let's go ahead!");
+      dispatch({
+        type: types.createGame,
+        payload: {
+          game,
+          data: {
+            gameId: juegoId,
+            lengthKm: kilometros,
+            numPlayers: numeroDeCarriles,
+          },
+        },
+      });
+      history.replace("/setup-game");
+      //   }
+      // })
+      // .catch((err) => {
+      //   swal("Error:" + err);
+      // });
     } else {
       swal("Invalid inputs, please try again.");
     }
