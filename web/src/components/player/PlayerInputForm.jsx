@@ -4,12 +4,14 @@ import { useForm } from "../hooks/useForm";
 import photos_data from "../../data/PHOTOS_DATA";
 import car_data from "../../data/CAR_DATA";
 import { validateInputPlayerForm } from "../../data/constants";
+import useCounter from "../hooks/useCounter";
 
 const PlayerInputForm = () => {
   const { game, dispatch } = useContext(GameContext);
-
+  const [counter, increment, decrement, reset] = useCounter(1);
   const [formValues, setFormValues] = useState({
     username: "",
+    lane: counter,
     pic: {},
     car: {},
   });
@@ -22,19 +24,17 @@ const PlayerInputForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formValues);
-    const result = validateInputPlayerForm(formValues.username);
+    const result = validateInputPlayerForm(formValues); // se realiza validación en todos los campos
     if (result === true) {
       setSuccessMessage("The player has been successfuly added");
-
+      increment();
       setFormValues({ username: "", pic: {}, car: {} });
       setTimeout(() => {
         setSuccessMessage(false);
       }, 1500);
       setError(false);
     } else {
-      setError(
-        "Username is required and must have between 3 and 20 characters."
-      );
+      setError("Username, pic and photo are required");
     }
   };
 
@@ -57,20 +57,29 @@ const PlayerInputForm = () => {
   return (
     <>
       <div className="row">
-        <div class="col-6 ml-5">
+        <div className="col-6 ml-5">
           <h2 className="text-center my-2">New player form</h2>
           <form onSubmit={handleSubmit}>
+            <div className="d-flex justify-content-between">
+              <h4 className="m-3 display-5">
+                lane # <span className="display-5">{counter}</span>
+              </h4>
+              <h4 className="m-3 display-5">
+                {game.numPlayers - counter + 1} Players remaining
+              </h4>
+            </div>
+
             <input
               type="text"
               name="username"
               className="form-control m-3"
-              placeholder="Username"
+              placeholder="Username [3 - 20] Characters"
               value={username}
               onChange={handleInputChange}
             />
-            <div class="dropdown m-3">
+            <div className="dropdown m-3">
               <button
-                class="btn btn-default dropdown-toggle"
+                className="btn btn-default dropdown-toggle"
                 type="button"
                 id="dropdownMenu1"
                 data-toggle="dropdown"
@@ -79,7 +88,7 @@ const PlayerInputForm = () => {
               >
                 <span className="mr-3">Select your pic</span>
               </button>
-              <ul class="dropdown-menu">
+              <ul className="dropdown-menu">
                 {photos_data.map((pic) => (
                   <li
                     key={pic.id}
@@ -95,9 +104,17 @@ const PlayerInputForm = () => {
               </ul>
             </div>
 
-            <div class="dropdown m-3">
+            {formValues.pic.name && (
+              <div className="alert alert-info form-control m-3 py-3 pb-5">
+                <p className="text-center">
+                  Your pick is: {formValues.pic.name}
+                </p>
+              </div>
+            )}
+
+            <div className="dropdown m-3">
               <button
-                class="btn btn-default dropdown-toggle"
+                className="btn btn-default dropdown-toggle"
                 type="button"
                 id="dropdownMenu2"
                 data-toggle="dropdown"
@@ -106,14 +123,14 @@ const PlayerInputForm = () => {
               >
                 <span className="mr-3">Select your car</span>
               </button>
-              <ul class="dropdown-menu">
+              <ul className="dropdown-menu">
                 {car_data.map((carPhoto) => (
                   <li key={carPhoto.id}>
                     <a
                       href="#"
                       onClick={() => handleSelectInputChange(carPhoto, "car")}
                     >
-                      <table class="table">
+                      <table className="table">
                         <tr>
                           <th scope="row" className="select-row">
                             <img src={carPhoto.url} width="100px" />
@@ -136,6 +153,14 @@ const PlayerInputForm = () => {
               </ul>
             </div>
 
+            {formValues.car.name && (
+              <div className="alert alert-info form-control m-3 py-3 pb-5">
+                <p className="text-center">
+                  Your car is: {formValues.car.name}
+                </p>
+              </div>
+            )}
+
             <input
               type="submit"
               className="btn btn-primary form-control m-3"
@@ -144,21 +169,21 @@ const PlayerInputForm = () => {
           </form>
 
           {error && (
-            <div className="alert alert-danger form-control m-3 p-3">
+            <div className="alert alert-danger form-control m-3 py-3 pb-5">
               <p className="text-center">{error}</p>
             </div>
           )}
 
           {successMessage && (
-            <div className="alert alert-success form-control m-3 p-3">
+            <div className="alert alert-success form-control m-3 py-3 pb-5">
               <p className="text-center">{successMessage}</p>
             </div>
           )}
         </div>
 
         <div className="col-5 ml-4">
-          <h2 className="text-center mt-2 mb-3">New player form</h2>
-          <table class="table">
+          <h2 className="text-center mt-2 mb-3">Player list</h2>
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">Lane</th>
@@ -167,11 +192,18 @@ const PlayerInputForm = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td scope="row">1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-              </tr>
+              {game.playerList.map((player) => (
+                <tr key={player.id}>
+                  <td scope="row">{player.lane}</td>
+                  <td>
+                    <div className="d-flex justify-content-around">
+                      <img src={player.pic} alt={player.pic.name} />
+                      <p>{player.username}</p>
+                    </div>
+                  </td>
+                  <td>Otto</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
