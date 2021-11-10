@@ -16,7 +16,7 @@ public class CrearJuegoUseCaseHandle extends UseCaseHandle {
         this.crarJuegoUseCase = crarJuegoUseCase;
     }
 
-    @ConsumeEvent(value="sofkau.juego.crearjuego", blocking = true)
+    @ConsumeEvent(value="sofkau.juego.crearjuego")
     void consume(CrearJuegoCommand command){
         var events = crarJuegoUseCase.apply(command);
         saveJuego(command.getJuegoId(), events);

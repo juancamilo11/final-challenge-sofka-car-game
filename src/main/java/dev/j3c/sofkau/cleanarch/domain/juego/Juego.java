@@ -21,10 +21,7 @@ public class Juego extends AggregateRoot implements EventChange {
     public Juego(String id, Integer kilometros, Integer numeroDeCarriles) {
         super(id);
         appendChange(new JuegoCreado(id,kilometros, numeroDeCarriles)).apply();
-    }
-
-    public Integer getPosicionFinalActual() {
-        return posicionFinalActual;
+        System.out.println(this.getKilometros());
     }
 
     private Juego(String id) {
@@ -82,12 +79,14 @@ public class Juego extends AggregateRoot implements EventChange {
     public static Juego from(String juegoId, List<DomainEvent> events){
         var juego = new Juego(juegoId);
         events.forEach(juego::applyEvent);
+        System.out.println("evento juego " + juego.kilometros);
         return juego;
     }
 
     public void anadirJugador(String cedula, String nombre){
         System.out.println("anadir jugador metodo");
         appendChange(new JugadorAnadido(cedula, nombre)).apply();
+        System.out.println(this.getKilometros() + " " + this.jugando );
     }
 
     public void setPosicionFinalActual(Integer posicionFinalActual) {
@@ -111,5 +110,17 @@ public class Juego extends AggregateRoot implements EventChange {
             appendChange(new SegundoLugarAsignado(jugadorId)).apply();
         if (posicion == 3)
             appendChange(new TercerLugarAsignado(jugadorId)).apply();*/
+    }
+
+    public Integer getPosicionFinalActual() {
+        return posicionFinalActual;
+    }
+
+    public Integer getKilometros() {
+        return kilometros;
+    }
+
+    public Map<String, Jugador> getJugadores() {
+        return jugadores;
     }
 }
