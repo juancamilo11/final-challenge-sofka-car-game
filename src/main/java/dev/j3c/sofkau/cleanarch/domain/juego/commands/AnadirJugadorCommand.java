@@ -7,14 +7,24 @@ public class AnadirJugadorCommand extends Command {
     private String juegoId;
     private String cedula;
     private String nombre;
+    private String carroId;
 
-    public AnadirJugadorCommand(String juegoId, String cedula, String nombre) {
+    public AnadirJugadorCommand(String juegoId, String cedula, String nombre, String carroId) {
         this.juegoId = juegoId;
         this.cedula = cedula;
         this.nombre = nombre;
+        this.carroId = carroId;
     }
 
     public AnadirJugadorCommand() {
+    }
+
+    public String getCarroId() {
+        return carroId;
+    }
+
+    public void setCarroId(String carroId) {
+        this.carroId = carroId;
     }
 
     public String getJuegoId() {

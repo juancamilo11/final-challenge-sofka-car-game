@@ -27,7 +27,7 @@ public class MongoEventStoreRepository implements EventStoreRepository {
          mongoClient.getDatabase("command")
                 .getCollection(aggregateName)
                 .find(eq("aggregateId", aggregateRootId))
-                 /*.sort(Comparator.comparing(event -> event.))*/
+                 /*.sort(Comparator.comparing(event -> event.i))*/
                 .map((Function<Document, DomainEvent>) document -> {
                     var eventBody = document.get("eventBody");
                     try {
