@@ -5,7 +5,7 @@ const car_data = [
     availableAtLevel: 1,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car1.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car1.png",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const car_data = [
     availableAtLevel: 2,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car2.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car2.png",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const car_data = [
     availableAtLevel: 3,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car3.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car3.png",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const car_data = [
     availableAtLevel: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car4.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car4.png",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const car_data = [
     availableAtLevel: 5,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car5.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car5.png",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const car_data = [
     availableAtLevel: 6,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car6.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car6.png",
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const car_data = [
     availableAtLevel: 7,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car7.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car7.png",
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const car_data = [
     availableAtLevel: 8,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car8.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car8.png",
   },
   {
     id: 9,
@@ -69,7 +69,7 @@ const car_data = [
     availableAtLevel: 9,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car9.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car9.png",
   },
   {
     id: 10,
@@ -77,7 +77,7 @@ const car_data = [
     availableAtLevel: 10,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    url: process.env.PUBLIC_URL + "/assets/img/car10.png",
+    url: process.env.PUBLIC_URL + "/assets/img-car/car10.png",
   },
 ];
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { GameContext } from "../game/gameContext";
-import types from "../type/types";
+import { GameContext } from "../../game/gameContext";
+import types from "../../type/types";
 
 export const Navbar = () => {
   const { game, dispatch } = useContext(GameContext);
