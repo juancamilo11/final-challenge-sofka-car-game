@@ -9,7 +9,7 @@ import nextId from "react-id-generator";
 import uniqueString from "unique-string";
 import types from "../type/types";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({history}) => {
   const [step, setStep] = useState(0);
   const { game, dispatch } = useContext(GameContext);
   // lengthKm:-1, numPlayers:-1,
@@ -45,6 +45,7 @@ const WelcomeScreen = () => {
             //Aquí se podría hacer el dispatch
             swal("Nice job! Let's go ahead!");
             dispatch({ action: types.createGame, payload: newGame });
+            history.replace("/setup-game")
           }
         })
         .catch((err) => {

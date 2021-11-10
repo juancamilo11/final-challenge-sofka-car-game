@@ -5,6 +5,8 @@ import dev.j3c.sofkau.cleanarch.domain.carril.command.CrearCarrilCommand;
 import dev.j3c.sofkau.cleanarch.domain.generic.DomainEvent;
 import dev.j3c.sofkau.cleanarch.domain.generic.EventStoreRepository;
 import dev.j3c.sofkau.cleanarch.domain.juego.Juego;
+import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoCreado;
+import dev.j3c.sofkau.cleanarch.usecase.services.JuegoService;
 
 import javax.enterprise.context.Dependent;
 import java.util.List;
@@ -22,10 +24,10 @@ public class CrearCarrilUseCase implements Function<CrearCarrilCommand, List<Dom
     @Override
     public List<DomainEvent> apply(CrearCarrilCommand crearCarrilCommand) {
         var events = repository.getEventsBy("juego", crearCarrilCommand.getJuegoId());
-        Juego juego = Juego.from(crearCarrilCommand.getJuegoId(), events);
-        System.out.println(juego.getJugadores());
+        var event = (JuegoCreado) events.get(0);
+        System.out.println("Kilometros: " + event.getKilometros());
 
-        Carril carril = new Carril(crearCarrilCommand.getId(), crearCarrilCommand.getJuegoId(), 5*1000);
+        Carril carril = new Carril(crearCarrilCommand.getId(), crearCarrilCommand.getJuegoId(), event.getKilometros()*1000);
         return carril.getUncommittedChanges();
     }
 }
