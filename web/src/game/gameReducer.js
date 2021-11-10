@@ -19,6 +19,8 @@ export const gameReducer = (state = {}, action) => {
         ...action.payload,
         playing: false,
       };
+    case types.createGame:
+
     default:
       return state;
   }

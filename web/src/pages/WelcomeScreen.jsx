@@ -5,10 +5,12 @@ import validValues from "../data/constants";
 import { GameContext } from "../game/gameContext";
 import swal from "sweetalert";
 import { createGameAction } from "../actions/gameActions";
+import nextId from "react-id-generator";
+import uniqueString from "unique-string";
+import types from "../type/types";
 
 const WelcomeScreen = () => {
   const [step, setStep] = useState(0);
-
   const { game, dispatch } = useContext(GameContext);
   // lengthKm:-1, numPlayers:-1,
   const [values, handleInputChange, reset] = useForm({
@@ -25,20 +27,23 @@ const WelcomeScreen = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validValues(lengthKm, numPlayers)) {
-      const juegoId = "1234567";
+      const juegoId = uniqueString(); //=> 'b4de2a49c8ffa3fbee04446f045483b2'
       const kilometros = parseInt(lengthKm);
       const numeroDeCarriles = parseInt(numPlayers);
       const newGame = {
-        type: "sofkau.juego.crearjuego",
-        juegoId,
-        kilometros,
-        numeroDeCarriles,
+        ...game,
+        gameId: juegoId,
+        lengthKm: kilometros,
+        numPlayers: numeroDeCarriles,
       };
       console.log(JSON.stringify(newGame));
       createGameAction(newGame)
-        .then((res) => {
-          console.log(res);
-          swal("Nice job! Let's go ahead!");
+        .then((values) => {
+          if (values.status === 200) {
+            //Aquí se podría hacer el dispatch
+            swal("Nice job! Let's go ahead!");
+            dispatch({ action: types.createGame, payload: newGame });
+          }
         })
         .catch((err) => {
           swal("Error:" + err);

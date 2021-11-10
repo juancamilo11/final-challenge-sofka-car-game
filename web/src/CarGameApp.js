@@ -64,8 +64,9 @@ const playerList = [
 ];
 
 const initialState = {
-  lengthKm: 5,
-  numPlayers: 4,
+  gameId: null,
+  lengthKm: -1,
+  numPlayers: -1,
   playing: false,
   playerList: [],
   numRound: -1,

@@ -5,18 +5,20 @@ import photos_data from "../../data/PHOTOS_DATA";
 import car_data from "../../data/CAR_DATA";
 import { validateInputPlayerForm } from "../../data/constants";
 import useCounter from "../hooks/useCounter";
+import { addPlayerToGameAction } from "../../actions/gameActions";
 
 const PlayerInputForm = () => {
   const { game, dispatch } = useContext(GameContext);
   const [counter, increment, decrement, reset] = useCounter(1);
   const [formValues, setFormValues] = useState({
     username: "",
+    playerName: "",
     lane: counter,
     pic: {},
     car: {},
   });
 
-  const { username } = formValues;
+  const { username, playerName } = formValues;
 
   const [successMessage, setSuccessMessage] = useState(false);
   const [error, setError] = useState(false);
@@ -24,8 +26,19 @@ const PlayerInputForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formValues);
-    const result = validateInputPlayerForm(formValues); // se realiza validación en todos los campos
+    const result = validateInputPlayerForm(formValues);
     if (result === true) {
+      const newPlayer = {
+        juegoId: game.gameId,
+        cedula: username,
+        nombre: playerName,
+      };
+
+      addPlayerToGameAction(newPlayer).then((result) => {
+        // result.status === 200 && dispatch({action:})
+        console.log(result);
+      });
+
       setSuccessMessage("The player has been successfuly added");
       increment();
       setFormValues({ username: "", pic: {}, car: {} });
@@ -47,7 +60,7 @@ const PlayerInputForm = () => {
   //   }, [toDoForEdit]);
 
   const handleInputChange = (e) => {
-    setFormValues({ ...formValues, username: e.target.value });
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
   const handleSelectInputChange = (pic, picName) => {
@@ -75,6 +88,15 @@ const PlayerInputForm = () => {
               className="form-control m-3"
               placeholder="Username [3 - 20] Characters"
               value={username}
+              onChange={handleInputChange}
+            />
+
+            <input
+              type="text"
+              name="playerName"
+              className="form-control m-3"
+              placeholder="Name [3 - 50] Characters"
+              value={playerName}
               onChange={handleInputChange}
             />
             <div className="dropdown m-3">
