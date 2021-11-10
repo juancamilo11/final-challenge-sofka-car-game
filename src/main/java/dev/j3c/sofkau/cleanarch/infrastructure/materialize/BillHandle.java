@@ -1,5 +1,6 @@
 package dev.j3c.sofkau.cleanarch.infrastructure.materialize;
 
+import dev.j3c.sofkau.cleanarch.domain.carril.events.CarrilCreado;
 import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoCreado;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoClient;
@@ -23,7 +24,7 @@ public class BillHandle {
     }
 
 
-    @ConsumeEvent(value = "sofkau.juego.juegocreado", blocking = true)
+    @ConsumeEvent(value = "sofkau.juego.juegocreado")
     void consumeJuegoCreado(JuegoCreado event) {
         System.out.println("materialize bill");
         Map<String, Object> document = new HashMap<>();
@@ -36,7 +37,7 @@ public class BillHandle {
                 .insertOne(new Document(document));
     }
 
-    @ConsumeEvent(value = "sofkau.juego.jugadoranadido", blocking = true)
+    @ConsumeEvent(value = "sofkau.juego.jugadoranadido")
     void consumeJugadorAnadido(JugadorAnadido event) {
         System.out.println("materialize product");
         BasicDBObject document = new BasicDBObject();
@@ -71,6 +72,17 @@ public class BillHandle {
         updateObject.put("$set", document);
         mongoClient.getDatabase("queries").getCollection("juego")
                 .updateOne( Filters.eq("_id", event.getAggregateId()), updateObject);
+    }
+
+    @ConsumeEvent(value = "sofkau.carril.carrilcreado")
+    void consumeCarrilCreado(CarrilCreado event) {
+        System.out.println("materialize carril");
+        Map<String, Object> document = new HashMap<>();
+        document.put("_id", event.getAggregateId());
+        document.put("meta", event.getMeta());
+        document.put("juegoId", event.getJuegoId());
+        mongoClient.getDatabase("queries").getCollection("carril")
+                .insertOne(new Document(document));
     }
 
 }

@@ -20,11 +20,11 @@ public class QueryController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/bill/{id}")
+    @Path("/juego/{id}")
     public Response get(@PathParam("id") String id) {
         List<Document> documentList = new ArrayList<>();
         mongoClient.getDatabase("queries")
-                .getCollection("bill")
+                .getCollection("juego")
                 .find(Filters.eq("_id", id))
                 .forEach(documentList::add);
         return Response.ok(documentList).build();

@@ -1,6 +1,7 @@
 package dev.j3c.sofkau.cleanarch.infrastructure;
 
 
+import dev.j3c.sofkau.cleanarch.domain.carril.command.CrearCarrilCommand;
 import dev.j3c.sofkau.cleanarch.domain.carril.events.MetaAlcanzada;
 import dev.j3c.sofkau.cleanarch.domain.juego.commands.AnadirJugadorCommand;
 import dev.j3c.sofkau.cleanarch.domain.juego.commands.CrearJuegoCommand;
@@ -53,6 +54,15 @@ public class CommandController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/finalizarJuego")
     public Response executor(FinalizarJuegoCommand command) {
+        System.out.println("controller " + command.getJuegoId());
+        messageService.send(command);
+        return Response.ok().build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/crearCarril")
+    public Response executor(CrearCarrilCommand command) {
         System.out.println("controller " + command.getJuegoId());
         messageService.send(command);
         return Response.ok().build();

@@ -9,13 +9,11 @@ public class CrearJuegoCommand extends Command {
     private String juegoId;
     private Integer kilometros;
     private Integer numeroDeCarriles;
-    private Map<String, String> jugadores;
 
-    public CrearJuegoCommand(String juegoId, Integer kilometros, Integer numeroDeCarriles, Map<String, String> jugadores) {
+    public CrearJuegoCommand(String juegoId, Integer kilometros, Integer numeroDeCarriles) {
         this.juegoId = juegoId;
         this.kilometros = kilometros;
         this.numeroDeCarriles = numeroDeCarriles;
-        this.jugadores = jugadores;
     }
 
     public CrearJuegoCommand() {
@@ -45,11 +43,4 @@ public class CrearJuegoCommand extends Command {
         this.kilometros = kilometros;
     }
 
-    public Map<String, String> getJugadores() {
-        return jugadores;
-    }
-
-    public void setJugadores(Map<String, String> jugadores) {
-        this.jugadores = jugadores;
-    }
 }
