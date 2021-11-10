@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "../components/hooks/useForm";
-import validValues from "../data/constants";
+import { validValues } from "../data/constants";
 import { GameContext } from "../game/gameContext";
 import swal from "sweetalert";
 import { createGameAction } from "../actions/gameActions";
@@ -36,6 +36,8 @@ const WelcomeScreen = () => {
         lengthKm: kilometros,
         numPlayers: numeroDeCarriles,
       };
+
+      
       console.log(JSON.stringify(newGame));
       createGameAction(newGame)
         .then((values) => {

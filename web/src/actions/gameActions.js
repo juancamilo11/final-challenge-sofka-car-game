@@ -4,6 +4,7 @@ export const createGameAction = async (newGame) => {
   const { gameId, lengthKm, numPlayers } = newGame;
 
   const command = {
+    type: "sofkau.juego.anadirjugador",
     juegoId: gameId,
     numeroDeCarriles: numPlayers,
     kilometros: lengthKm,
