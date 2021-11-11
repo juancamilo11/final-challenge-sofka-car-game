@@ -83,9 +83,9 @@ public class Juego extends AggregateRoot implements EventChange {
         return juego;
     }
 
-    public void anadirJugador(String cedula, String nombre){
+    public void anadirJugador(String cedula, String nombre, String carroId){
         System.out.println("anadir jugador metodo");
-        appendChange(new JugadorAnadido(cedula, nombre)).apply();
+        appendChange(new JugadorAnadido(cedula, nombre, carroId)).apply();
         System.out.println(this.getKilometros() + " " + this.jugando );
     }
 

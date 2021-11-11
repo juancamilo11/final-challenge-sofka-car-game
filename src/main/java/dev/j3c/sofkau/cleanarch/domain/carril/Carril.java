@@ -1,6 +1,9 @@
 package dev.j3c.sofkau.cleanarch.domain.carril;
 
 import dev.j3c.sofkau.cleanarch.domain.carril.events.CarrilCreado;
+import dev.j3c.sofkau.cleanarch.domain.carril.events.CarroAgregadoACarril;
+import dev.j3c.sofkau.cleanarch.domain.carril.events.CarroDezplazado;
+import dev.j3c.sofkau.cleanarch.domain.carril.events.MetaAlcanzada;
 import dev.j3c.sofkau.cleanarch.domain.generic.AggregateRoot;
 import dev.j3c.sofkau.cleanarch.domain.generic.DomainEvent;
 import dev.j3c.sofkau.cleanarch.domain.generic.EventChange;
@@ -30,6 +33,21 @@ public class Carril extends AggregateRoot implements EventChange {
             this.desplazamientoFinal = false;
             this.posicionActual = 0;
         });
+
+        listener((CarroAgregadoACarril event) -> {
+            this.carroId = event.getCarroId();
+            this.posicionActual = 0;
+        });
+
+        listener((CarroDezplazado event) -> {
+            var actual = event.getPosicionActual();
+            this.posicionActual = this.getPosicionActual() + actual;
+        });
+
+        listener((MetaAlcanzada event) -> {
+            this.desplazamientoFinal = true;
+            this.posicionActual = this.meta;
+        });
     }
 
     public static Carril from(String entityId, List<DomainEvent> eventList) {
@@ -38,7 +56,17 @@ public class Carril extends AggregateRoot implements EventChange {
         return carril;
     }
 
+    public void aggregarCarro(String carroId) {
+        appendChange(new CarroAgregadoACarril(carroId)).apply();
+    }
 
+    public void alcazarLaMeta() {
+        appendChange(new MetaAlcanzada(carroId, juegoId)).apply();
+    }
+
+    public void moverCarro(Integer aumento) {
+        appendChange(new CarroDezplazado(aumento, meta)).apply();
+    }
 
     public String getCarroId() {
         return carroId;

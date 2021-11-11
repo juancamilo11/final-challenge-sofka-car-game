@@ -21,7 +21,7 @@ public class AnadirJugadorUseCase implements Function<AnadirJugadorCommand, List
     @Override
     public List<DomainEvent> apply(AnadirJugadorCommand command) {
         Juego juego = Juego.from(command.getJuegoId(), repository.getEventsBy("juego", command.getJuegoId()));
-        juego.anadirJugador(command.getCedula(), command.getNombre());
+        juego.anadirJugador(command.getCedula(), command.getNombre(), command.getCarroId());
         return juego.getUncommittedChanges();
     }
 }

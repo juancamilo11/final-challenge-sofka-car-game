@@ -2,16 +2,19 @@ package dev.j3c.sofkau.cleanarch.usecase;
 
 import dev.j3c.sofkau.cleanarch.domain.carril.Carril;
 import dev.j3c.sofkau.cleanarch.domain.carril.command.CrearCarrilCommand;
+import dev.j3c.sofkau.cleanarch.domain.carro.event.CarroCreado;
 import dev.j3c.sofkau.cleanarch.domain.generic.DomainEvent;
 import dev.j3c.sofkau.cleanarch.domain.generic.EventStoreRepository;
 import dev.j3c.sofkau.cleanarch.domain.juego.Juego;
+import dev.j3c.sofkau.cleanarch.domain.juego.events.JuegoCreado;
+import dev.j3c.sofkau.cleanarch.usecase.services.JuegoService;
 
 import javax.enterprise.context.Dependent;
 import java.util.List;
 import java.util.function.Function;
 
 @Dependent
-public class CrearCarrilUseCase implements Function<CrearCarrilCommand, List<DomainEvent>> {
+public class CrearCarrilUseCase implements Function<CarroCreado, List<DomainEvent>> {
 
     private final EventStoreRepository repository;
 
@@ -20,12 +23,15 @@ public class CrearCarrilUseCase implements Function<CrearCarrilCommand, List<Dom
     }
 
     @Override
-    public List<DomainEvent> apply(CrearCarrilCommand crearCarrilCommand) {
-        var events = repository.getEventsBy("juego", crearCarrilCommand.getJuegoId());
-        Juego juego = Juego.from(crearCarrilCommand.getJuegoId(), events);
-        System.out.println(juego.getJugadores());
+    public List<DomainEvent> apply(CarroCreado carroCreado) {
+        var events = repository.getEventsBy("juego", carroCreado.getJuegoId());
+        var event = (JuegoCreado) events.get(0);
 
-        Carril carril = new Carril(crearCarrilCommand.getId(), crearCarrilCommand.getJuegoId(), 5*1000);
+
+        Carril carril = new Carril(String.valueOf(carroCreado.getCarroId().hashCode()), carroCreado.getJuegoId(), event.getKilometros()*1000);
+        System.out.println("Carril creado");
+        carril.aggregarCarro(carroCreado.getCarroId());
+        System.out.println("carro agregado");
         return carril.getUncommittedChanges();
     }
 }

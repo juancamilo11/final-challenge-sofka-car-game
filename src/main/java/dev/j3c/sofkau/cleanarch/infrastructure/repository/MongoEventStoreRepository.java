@@ -10,6 +10,7 @@ import org.bson.Document;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -27,7 +28,7 @@ public class MongoEventStoreRepository implements EventStoreRepository {
          mongoClient.getDatabase("command")
                 .getCollection(aggregateName)
                 .find(eq("aggregateId", aggregateRootId))
-                 /*.sort(Comparator.comparing(event -> event.))*/
+                 /*.sort(Comparator.comparing(event -> event.i))*/
                 .map((Function<Document, DomainEvent>) document -> {
                     var eventBody = document.get("eventBody");
                     try {
@@ -38,7 +39,7 @@ public class MongoEventStoreRepository implements EventStoreRepository {
                         throw new RuntimeException(e);
                     }
                 }).forEach(events::add);
-        return events;
+        return events/*.stream().sorted(Comparator.comparing(event -> event.getInstant())).collect(Collectors.toList())*/;
     }
 
     @Override
