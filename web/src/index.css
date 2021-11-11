@@ -131,7 +131,7 @@ code {
   position: fixed;
   padding: 15px;
   right: 40px;
-  top: 65px;
+  top: 70px;
   height: 72vh;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -161,4 +161,9 @@ code {
   width: 100%;
   text-align: center;
   height: 30px;
+}
+
+.section-title {
+  margin-top: 80px;
+  margin-bottom: 30px;
 }

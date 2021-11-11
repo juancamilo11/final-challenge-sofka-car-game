@@ -29,7 +29,16 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav
+      className="navbar navbar-expand-sm navbar-dark bg-dark"
+      style={{
+        position: "fixed",
+        top: "0px",
+        width: "100%",
+        zIndex: "10000",
+        marginBottom: "100px",
+      }}
+    >
       <Link className="navbar-brand mx-5" to="/">
         RandomCarRaceApp
       </Link>
