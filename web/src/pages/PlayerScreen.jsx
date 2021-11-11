@@ -4,24 +4,19 @@ import NavbarSecundary from "../components/ui/NavbarSecundary";
 import { GameContext } from "../game/gameContext";
 
 const PlayerScreen = ({ history }) => {
-  const { id: playerId } = useParams();
+  const { id } = useParams();
   const { game } = useContext(GameContext);
 
-  const getPlayerById = () =>
-    game.playerList.find((player) => player.id === parseInt(playerId));
+  const getPlayerById = () => game.playerList.find((player) => player.id == id);
 
-  const player = useMemo(() => getPlayerById(playerId), [playerId]);
+  const player = useMemo(() => getPlayerById(id), [id]);
   console.log(player);
 
   if (!player) {
     return <Redirect to="/" />;
   }
 
-  const handleReturn = (e) => {
-    history.goBack();
-  };
-
-  const { name, phoneNumber, email, address } = player;
+  const { playerName, car, pic } = player;
 
   return (
     <>
@@ -29,31 +24,40 @@ const PlayerScreen = ({ history }) => {
       <h1 className="display-4 text-center my-3">Player description</h1>
       <div className="row mt-5 ml-5 container">
         <hr />
-        <div className="col-4">
+        <div className="col-4 d-block container-images">
           <img
-            src={
-              process.env.PUBLIC_URL + `/assets/img-logos/logo${playerId}.png`
-            }
-            alt={name}
-            className="img-thumbnail animate__animated animate__fadeInLeft"
+            src={process.env.PUBLIC_URL + `${pic.url}`}
+            alt={playerName}
+            className="img-thumbnail img-pic-card animate__animated animate__fadeInLeft"
+          />
+          <img
+            src={process.env.PUBLIC_URL + `${car.url}`}
+            alt={playerName}
+            className="img-thumbnail img-car-card animate__animated animate__fadeInLeft"
           />
         </div>
 
         <div className="col-8 animate__animated animate__fadeIn">
-          <h3> {name} </h3>
+          <h2 className="m-4"> {playerName} </h2>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              <b> Alter ego: </b> {phoneNumber}
+              <b>Username: </b> {playerName}
             </li>
             <li className="list-group-item">
-              <b> Publisher: </b> {email}
+              <b>Player name: </b> {playerName}
             </li>
             <li className="list-group-item">
-              <b> First appearance: </b> {address}
+              <b> Player name: </b> {playerName}
             </li>
           </ul>
-          <h5> Characters </h5>
-          <p> {email} </p>
+
+          <div className="list-group list-group-flush">
+            <h3> Car description </h3>
+            <h5> Car name: {car.name} </h5>
+            <p>Car description: {car.description}</p>
+          </div>
+
+          <br />
           <Link className="btn btn-primary" to="/player-list">
             Go back to list <i class="fas fa-clipboard-list button-icon"></i>
           </Link>

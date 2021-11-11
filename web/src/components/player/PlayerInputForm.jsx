@@ -9,6 +9,8 @@ import types from "../../type/types";
 import { initialState } from "../../CarGameApp";
 import { useHistory } from "react-router";
 import { startGameAction } from "../../actions/gameActions";
+import swal from "sweetalert";
+import uniqueString from "unique-string";
 
 const PlayerInputForm = () => {
   const { game, dispatch } = useContext(GameContext);
@@ -48,7 +50,7 @@ const PlayerInputForm = () => {
         type: types.addPlayerToGame,
         payload: {
           game,
-          data: { ...formValues, lane: counter }, //Counter -> Lane
+          data: { ...formValues, lane: counter, id: uniqueString() }, //Counter -> Lane
         },
       });
 
@@ -76,9 +78,16 @@ const PlayerInputForm = () => {
   };
 
   const handleStartRace = () => {
-    startGameAction(game).then((res) => {
-      dispatch({ type: types.startGame, payload: game });
-    });
+    // startGameAction(game).then((values) => {
+    //   if (values.status) {
+    //     dispatch({ type: types.startGame, payload: game });
+    //     history.replace("/game");
+    //   } else {
+    //     swal("Error" + values.statusText);
+    //   }
+    // });
+    dispatch({ type: types.startGame, payload: game });
+    history.replace("/game");
   };
 
   return (

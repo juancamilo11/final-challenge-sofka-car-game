@@ -33,10 +33,14 @@ code {
 .img-logo {
   width: 100px;
   height: 100px;
+  padding: 5px;
+  margin-left: 20px;
 }
 
 .img-car {
   width: 100px;
+  padding: 20px;
+  margin-left: 20px;
 }
 
 /* Podium */
@@ -83,4 +87,17 @@ code {
 
 .btn-start {
   width: 100%;
+}
+
+.img-pic-card {
+  width: 100%;
+  border: none;
+}
+
+.img-car-card {
+  margin-top: 20px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  border: none;
 }

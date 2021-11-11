@@ -70,7 +70,7 @@ const initialState = {
   playing: false,
   playerList: [],
   numRound: -1,
-  finished: false,
+  finished: true,
 };
 
 const CarGameApp = () => {

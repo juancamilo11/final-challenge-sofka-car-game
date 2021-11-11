@@ -56,9 +56,9 @@ export const addPlayerToGameAction = async (newPlayer) => {
 };
 
 export const startGameAction = async (game) => {
-  const command = { ...newPlayer, type: "sofkau.juego.anadirjugador" };
+  const command = { type: "sofkau.juego.iniciarjuego", juegoId: game.gameId };
   try {
-    const res = await fetch(`${URL_BASE}/anadirJugador`, {
+    const res = await fetch(`${URL_BASE}/iniciarJuego`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
