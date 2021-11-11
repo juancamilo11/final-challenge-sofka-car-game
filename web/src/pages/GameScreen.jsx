@@ -12,14 +12,16 @@ const GameScreen = () => {
         <div className="row">
           <div
             className="col-7 game-frame"
-            style={{ height: `${game.playerList.length * 100}px` }}
+            style={{ height: `${game.playerList.length * 65}px` }}
           >
             <table style={{ width: "100%" }}>
               <thead>
-                <tr>
-                  <th>
-                    Aqui generar las distancias en bloques td dividiendo la
-                    distancia total por 10 y multiplicando por un contador
+                <tr className="distances">
+                  <th className="d-flex justify-content-around">
+                    {new Array(10).fill(10).map((value, index) => (
+                      <div>{parseInt(game.lengthKm) * 100 * index}</div>
+                      // <div>{(parseInt(game.lengthKm)*1000/10) * index}</div>
+                    ))}
                   </th>
                 </tr>
               </thead>

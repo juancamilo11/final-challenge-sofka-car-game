@@ -1,5 +1,6 @@
 const game = {
   //USar para mirar estilso y demas y luego quitar para no tener conflictos con el context
+  lengthKm: 4,
   playerList: [
     {
       username: "carlos-ochoa111",

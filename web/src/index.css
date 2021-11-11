@@ -107,8 +107,6 @@ code {
   padding: 0px;
   margin-top: 0px;
   margin-bottom: 15px;
-  border: 2px solid black;
-  border-radius: 5px;
 }
 
 .lane-frame {
@@ -157,4 +155,11 @@ code {
   flex-direction: row;
   align-items: center;
   justify-content: end;
+}
+
+.distances {
+  background-color: green;
+  width: 100%;
+  text-align: center;
+  height: 30px;
 }
