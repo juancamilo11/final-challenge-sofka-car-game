@@ -10,16 +10,49 @@ const GameScreen = () => {
       <>
         {/* <h1 className="text-center">Game section</h1> */}
         <div className="row">
-          <div className="col-8 game-frame">
-            {game.playerList.map((player) => {
-              <div key={player.id} className="lane-frame"></div>;
-            })}
+          <div
+            className="col-7 game-frame"
+            style={{ height: `${game.playerList.length * 100}px` }}
+          >
+            <table style={{ width: "100%" }}>
+              <thead>
+                <tr>
+                  <th>
+                    Aqui generar las distancias en bloques td dividiendo la
+                    distancia total por 10 y multiplicando por un contador
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {game.playerList.map((player) => (
+                  <tr key={player.id}>
+                    <div className="lane-frame">
+                      <td className="lane-info">
+                        <small>
+                          <b>{player.username}</b>
+                        </small>
+                        <img
+                          src={player.pic.url}
+                          alt={player.pic.name}
+                          className="img-pic-frame"
+                        />
+                      </td>
+                      {/* Si algo hacerle un overflox en x */}
+                      <td>
+                        <img
+                          src={player.car.url}
+                          alt={player.car.name}
+                          className="img-car-frame"
+                        />
+                      </td>
+                    </div>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
           <div className="leaderboards">
-            <div className="table-title">
-              <h2 className="my-1">Leaderboards</h2>
-            </div>
             <table className="table">
               <thead>
                 <tr>
