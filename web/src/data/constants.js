@@ -1,5 +1,5 @@
 const game_constants = {
-  MAX_NUM_PLAYERS: 20,
+  MAX_NUM_PLAYERS: 50,
   MAX_LENGTH: 50,
 };
 
@@ -16,12 +16,11 @@ const validValues = (lengthKm, numPlayers) => {
   return false;
 };
 
-const validateInputPlayerForm = (formValues) => {
+const validateInputPlayerForm = (game, formValues) => {
   const usernameRegex = new RegExp(
-    "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"
+    "^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"
   );
-
-  const nameRegex = new RegExp("^[A-Z a-z]{1,}[.]{0,1}[A-Z a-z]{0,}$");
+  const nameRegex = new RegExp("^[A-Z a-z]{1,}[.]{0,1}[A-Z a-z]{3,50}$");
 
   const { username, playerName, pic, car } = formValues;
   if (username?.trim().length < 3 || username?.trim().length > 20) {
@@ -36,9 +35,10 @@ const validateInputPlayerForm = (formValues) => {
     return false;
   }
 
-  if (playerName?.trim().length < 3 || playerName?.trim().length > 50) {
+  if (game.playerList.find((player) => player.username === username)) {
     return false;
   }
+
   if (!pic?.name || !car?.name) {
     return false;
   }

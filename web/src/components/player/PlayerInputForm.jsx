@@ -36,7 +36,7 @@ const PlayerInputForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formValues);
-    const result = validateInputPlayerForm(formValues);
+    const result = validateInputPlayerForm(game, formValues);
     if (result === true) {
       // const newPlayer = {
       //   juegoId: game.gameId,

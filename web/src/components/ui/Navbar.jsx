@@ -28,6 +28,10 @@ export const Navbar = () => {
     });
   };
 
+  const handleGoToPodium = () => {
+    console.log("vamos pal podium");
+  };
+
   return (
     <nav
       className="navbar navbar-expand-sm navbar-dark bg-dark"
@@ -37,6 +41,7 @@ export const Navbar = () => {
         width: "100%",
         zIndex: "10000",
         marginBottom: "100px",
+        borderRadius: "0px",
       }}
     >
       <Link className="navbar-brand mx-5" to="/">
@@ -67,6 +72,18 @@ export const Navbar = () => {
 
       <div>
         <ul className="navbar-nav ml-auto">
+          {!game.finished && (
+            <div>
+              <spam className="mr-4" style={{ color: "white" }}>
+                The race has Finished!
+              </spam>
+              <button className="btn btn-info mr-3" onClick={handleGoToPodium}>
+                <span>
+                  Go to Podium<i class="fas fa-trophy button-icon"></i>
+                </span>
+              </button>
+            </div>
+          )}
           {game.playing && (
             <button
               className="btn btn-primary mr-3"
