@@ -120,3 +120,18 @@ code {
 .game-container {
   background-color: darkgray;
 }
+
+.table-title {
+  padding: 10px;
+  margin-left: 20%;
+}
+
+.leaderboards {
+  position: fixed;
+  padding: 30px;
+  right: 20px;
+  top: 65px;
+  height: 72vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
