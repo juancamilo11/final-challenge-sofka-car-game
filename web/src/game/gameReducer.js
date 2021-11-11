@@ -44,11 +44,12 @@ export const gameReducer = (state = {}, action) => {
             ? {
                 ...player,
                 distance: (player.distance += getNewRandomDistance()),
+                distance:
+                  player.distance > action.payload.lengthKm * 1000
+                    ? action.payload.lengthKm * 1000
+                    : player.distance,
               }
-            : {
-                ...player,
-                distance: action.payload.lengthKm * 1000,
-              }
+            : player
         ),
       };
     default:

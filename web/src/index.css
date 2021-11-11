@@ -119,6 +119,7 @@ code {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-top: 2px;
 }
 
 .table-title {
@@ -140,7 +141,7 @@ code {
   height: 50px;
   position: relative;
   /* left: 5px; */
-  top: 20px;
+  top: 15px;
 }
 
 .img-pic-frame {
