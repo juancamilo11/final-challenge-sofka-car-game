@@ -3,6 +3,7 @@ import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
 import game from "../data/fake_data";
+
 const GameScreen = () => {
   return (
     <div className="game-container">

@@ -102,14 +102,16 @@ const PlayerInputForm = () => {
         <div className="col-6 ml-5">
           <h2 className="text-center my-2">New player form</h2>
           <form onSubmit={handleSubmit}>
-            <div className="d-flex justify-content-between">
-              <h4 className="m-3 display-5">
-                lane # <span className="display-5">{counter}</span>
-              </h4>
-              <h4 className="m-3 display-5">
-                {game.numPlayers - counter + 1} Players remaining
-              </h4>
-            </div>
+            {game.numPlayers - counter + 1 !== 0 && (
+              <div className="d-flex justify-content-between">
+                <h4 className="m-3 display-5">
+                  lane # <span className="display-5">{counter}</span>
+                </h4>
+                <h4 className="m-3 display-5">
+                  {game.numPlayers - counter + 1} Players remaining
+                </h4>
+              </div>
+            )}
 
             <input
               type="text"
