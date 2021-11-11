@@ -6,7 +6,7 @@ const fake_game = {
       username: "carlos-ochoa111",
       playerName: "Juan Carlos Ochoa",
       distance: 0,
-      position: 0,
+      position: 3,
       lane: 1,
       pic: {
         id: 3,
@@ -66,7 +66,7 @@ const fake_game = {
       username: "ana.maria-11124",
       playerName: "Ana Maria Carmona",
       distance: 0,
-      position: 0,
+      position: 1,
       pic: {
         id: 10,
         name: "Christopher",
@@ -86,7 +86,7 @@ const fake_game = {
       username: "carolina.bedoya999",
       playerName: "Caro Bedoya Cardona",
       distance: 0,
-      position: 0,
+      position: 2,
       pic: {
         id: 6,
         name: "Helena",

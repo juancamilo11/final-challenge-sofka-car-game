@@ -167,3 +167,50 @@ code {
   margin-top: 80px;
   margin-bottom: 30px;
 }
+
+.splace-container,
+.tplace-container {
+  margin-top: 70px;
+}
+
+.fplace-container {
+  margin-top: 30px;
+}
+
+.podium-container {
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.fplace-container .img-pic-card,
+.splace-container .img-pic-card,
+.tplace-container .img-pic-card {
+  margin-top: 30px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.fplace-container {
+  margin-right: 10px;
+}
+
+.splace-container {
+  margin-right: 10px;
+}
+
+.fplace-container .img-podium-card,
+.splace-container .img-podium-card,
+.tplace-container .img-podium-card {
+  margin-top: 30px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.img-photo-card {
+  width: 30%;
+  margin-top: 30px;
+  margin-left: 35%;
+  margin-right: 35%;
+}

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { GameContext } from "../../game/gameContext";
 import types from "../../type/types";
 
 export const Navbar = () => {
   const { game, dispatch } = useContext(GameContext);
-
+  const history = useHistory();
   const handleResume = () => {
     if (game.playing) {
       dispatch({
@@ -29,7 +29,7 @@ export const Navbar = () => {
   };
 
   const handleGoToPodium = () => {
-    console.log("vamos pal podium");
+    history.push("/podium");
   };
 
   return (
@@ -72,7 +72,7 @@ export const Navbar = () => {
 
       <div>
         <ul className="navbar-nav ml-auto">
-          {!game.finished && (
+          {game.finished && (
             <div>
               <spam className="mr-4" style={{ color: "white" }}>
                 The race has Finished!
