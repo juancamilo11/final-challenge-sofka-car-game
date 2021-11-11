@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
-import fake_game from "../data/fake_data";
+// import fake_game from "../data/fake_data";
 
 const GameScreen = () => {
   const { game, dispatcher } = useContext(GameContext);
 
   const getComputedDistance = (player) => {
-    return ((player.distance * 1700) / game.lengthKm) * 1000;
+    return (player.distance * 1700) / (1000 * game.lengthKm);
   };
 
   // document.getElementById("yourDiv").clientWidth;
@@ -21,21 +21,26 @@ const GameScreen = () => {
         <div className="row">
           <div
             className="col-7 game-frame"
-            style={{ height: `${fake_game.playerList.length * 65}px` }}
+            style={{ height: `${game.playerList.length * 65}px` }}
+            // style={{ height: `${fake_game.playerList.length * 65}px` }}
           >
             <table style={{ width: "100%" }}>
               <thead>
                 <tr className="distances">
                   <th className="d-flex justify-content-around">
                     {new Array(10).fill(10).map((value, index) => (
-                      <div>{parseInt(fake_game.lengthKm) * 100 * index}</div>
-                      // <div>{(parseInt(game.lengthKm)*1000/10) * index}</div>
+                      <div>{parseInt(game.lengthKm) * 100 * index}</div>
+                      // <div>{parseInt(fake_game.lengthKm) * 100 * index}</div> // con fake data
+
+                      // <div>{(parseInt(game.lengthKm)*1000/10) * index}</div> //simplificado
                     ))}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {fake_game.playerList.map((player) => (
+                {game.playerList.map((player) => (
+                  // {fake_game.playerList.map((player) => (   // con gake data
+
                   <tr key={player.id}>
                     <div className="lane-frame">
                       <td className="lane-info pr-1">
@@ -83,7 +88,8 @@ const GameScreen = () => {
                 </tr>
               </thead>
               <tbody>
-                {fake_game.playerList.map((player) => (
+                {game.playerList.map((player) => (
+                  // {fake_game.playerList.map((player) => (   // con fake data
                   <tr key={player.username}>
                     <td>
                       <div

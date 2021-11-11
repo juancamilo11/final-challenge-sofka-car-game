@@ -17,7 +17,7 @@ export const gameReducer = (state = {}, action) => {
       return {
         ...action.payload.game,
         gameId: action.payload.data.gameId,
-        lengthKm: action.payload.data.gameId,
+        lengthKm: action.payload.data.lengthKm,
         numPlayers: action.payload.data.numPlayers,
       };
     case types.addPlayerToGame:
@@ -36,15 +36,19 @@ export const gameReducer = (state = {}, action) => {
         ...action.payload,
         finished: true,
       };
+    case types.moveCars:
       return {
         ...action.payload,
-        playerList: playerList.map((player) =>
-          player.distance >= action.payload.lengthKm
+        playerList: action.payload.playerList.map((player) =>
+          player.distance < action.payload.lengthKm * 1000
             ? {
                 ...player,
                 distance: (player.distance += getNewRandomDistance()),
               }
-            : player
+            : {
+                ...player,
+                distance: action.payload.lengthKm * 1000,
+              }
         ),
       };
     default:

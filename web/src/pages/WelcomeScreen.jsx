@@ -27,7 +27,7 @@ const WelcomeScreen = ({ history }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validValues(lengthKm, numPlayers)) {
-      const juegoId = uniqueString(); //=> 'b4de2a49c8ffa3fbee04446f045483b2'
+      const juegoId = uniqueString();
       const kilometros = parseInt(lengthKm);
       const numeroDeCarriles = parseInt(numPlayers);
       const newGame = {
