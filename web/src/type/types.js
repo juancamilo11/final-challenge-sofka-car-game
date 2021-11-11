@@ -1,9 +1,9 @@
 const types = {
-  resumeGame: "[game] resume",
-  stopGame: "[game] stop",
-  createGame: "[game] create",
+  resumeGame: "[game] resume game",
+  stopGame: "[game] stop game",
+  createGame: "[game] create game",
   addPlayerToGame: "[game] add player",
-  recoverGame: "[game] recover game",
+  startGame: "[game] start game",
 };
 
 export default types;

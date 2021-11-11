@@ -7,10 +7,13 @@ import useCounter from "../hooks/useCounter";
 // import { addPlayerToGameAction } from "../../actions/gameActions";
 import types from "../../type/types";
 import { initialState } from "../../CarGameApp";
+import { useHistory } from "react-router";
+import { startGameAction } from "../../actions/gameActions";
 
 const PlayerInputForm = () => {
   const { game, dispatch } = useContext(GameContext);
   const [counter, increment] = useCounter(1);
+  const history = useHistory();
   const [formValues, setFormValues] = useState({
     username: "",
     playerName: "",
@@ -18,6 +21,10 @@ const PlayerInputForm = () => {
     pic: {},
     car: {},
   });
+
+  if (game.numPlayers - counter + 1 <= 0 && game.playerList.length === 0) {
+    history.replace("/");
+  }
 
   const { username, playerName } = formValues;
 
@@ -52,6 +59,7 @@ const PlayerInputForm = () => {
       setFormValues({ username: "", playerName: "", pic: {}, car: {} });
       setTimeout(() => {
         setSuccessMessage(false);
+        setError(false);
       }, 1500);
       setError(false);
     } else {
@@ -65,6 +73,12 @@ const PlayerInputForm = () => {
 
   const handleSelectInputChange = (pic, picName) => {
     setFormValues({ ...formValues, [picName]: pic });
+  };
+
+  const handleStartRace = () => {
+    startGameAction(game).then((res) => {
+      dispatch({ type: types.startGame, payload: game });
+    });
   };
 
   return (
@@ -85,6 +99,7 @@ const PlayerInputForm = () => {
             <input
               type="text"
               name="username"
+              disabled={game.numPlayers - counter + 1 <= 0}
               className="form-control m-3"
               placeholder="Username [3 - 20] Characters"
               value={username}
@@ -94,6 +109,7 @@ const PlayerInputForm = () => {
             <input
               type="text"
               name="playerName"
+              disabled={game.numPlayers - counter + 1 <= 0}
               className="form-control m-3"
               placeholder="Name [3 - 50] Characters"
               value={playerName}
@@ -104,6 +120,7 @@ const PlayerInputForm = () => {
                 className="btn btn-default dropdown-toggle"
                 type="button"
                 id="dropdownMenu1"
+                disabled={game.numPlayers - counter + 1 <= 0}
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="true"
@@ -138,6 +155,7 @@ const PlayerInputForm = () => {
               <button
                 className="btn btn-default dropdown-toggle"
                 type="button"
+                disabled={game.numPlayers - counter + 1 <= 0}
                 id="dropdownMenu2"
                 data-toggle="dropdown"
                 aria-haspopup="true"
@@ -192,10 +210,21 @@ const PlayerInputForm = () => {
 
             <input
               type="submit"
+              disabled={game.numPlayers - counter + 1 <= 0}
               className="btn btn-primary form-control m-3"
               value="Input new player"
             />
           </form>
+
+          {game.numPlayers - counter + 1 <= 0 && (
+            <button
+              type="button"
+              className="btn btn-info m-3 py-3 btn-start"
+              onClick={handleStartRace}
+            >
+              Start the race!
+            </button>
+          )}
 
           {error && (
             <div className="alert alert-danger form-control m-3 py-3 pb-5">
@@ -225,7 +254,7 @@ const PlayerInputForm = () => {
               </tr>
             </thead>
             <tbody>
-              {game?.playerList?.map((player) => (
+              {game.playerList.map((player) => (
                 <tr key={player.username}>
                   <th scope="row">{player.lane}</th>
                   <td>

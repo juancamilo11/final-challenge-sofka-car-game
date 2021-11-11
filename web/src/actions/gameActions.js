@@ -54,3 +54,27 @@ export const addPlayerToGameAction = async (newPlayer) => {
     console.log(err);
   }
 };
+
+export const startGameAction = async (game) => {
+  const command = { ...newPlayer, type: "sofkau.juego.anadirjugador" };
+  try {
+    const res = await fetch(`${URL_BASE}/anadirJugador`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(command),
+    });
+    const status = await res.status;
+    const statusText = await res.statusText;
+
+    const values = { status, statusText };
+
+    console.log(values);
+    //Al final se hace el dispatch del estado en base al resultado de la petición
+
+    return values;
+  } catch (err) {
+    console.log(err);
+  }
+};
