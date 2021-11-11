@@ -85,4 +85,5 @@ const CarGameApp = () => {
   );
 };
 
+export { initialState };
 export default CarGameApp;

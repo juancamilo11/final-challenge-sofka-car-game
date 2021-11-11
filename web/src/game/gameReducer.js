@@ -25,6 +25,8 @@ export const gameReducer = (state = {}, action) => {
         ...action.payload.game,
         playerList: [...playerList, action.payload.data],
       };
+    case types.recoverGame:
+      return { ...action.payload };
     default:
       return state;
   }

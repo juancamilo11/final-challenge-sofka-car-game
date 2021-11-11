@@ -18,10 +18,10 @@ const validValues = (lengthKm, numPlayers) => {
 
 const validateInputPlayerForm = (formValues) => {
   const { username, playerName, pic, car } = formValues;
-  if (username.trim().length < 3 || username.trim().length > 20) {
+  if (username?.trim().length < 3 || username?.trim().length > 20) {
     return false;
   }
-  if (playerName.trim().length < 3 || playerName.trim().length > 50) {
+  if (playerName?.trim().length < 3 || playerName?.trim().length > 50) {
     return false;
   }
   if (!pic?.name || !car?.name) {

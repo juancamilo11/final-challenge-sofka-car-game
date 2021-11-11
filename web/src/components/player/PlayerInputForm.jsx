@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../game/gameContext";
 import photos_data from "../../data/PHOTOS_DATA";
 import car_data from "../../data/CAR_DATA";
@@ -6,6 +6,7 @@ import { validateInputPlayerForm } from "../../data/constants";
 import useCounter from "../hooks/useCounter";
 // import { addPlayerToGameAction } from "../../actions/gameActions";
 import types from "../../type/types";
+import { initialState } from "../../CarGameApp";
 
 const PlayerInputForm = () => {
   const { game, dispatch } = useContext(GameContext);
@@ -40,7 +41,7 @@ const PlayerInputForm = () => {
         type: types.addPlayerToGame,
         payload: {
           game,
-          data: { ...formValues },
+          data: { ...formValues, lane: counter }, //Counter -> Lane
         },
       });
 
@@ -48,7 +49,7 @@ const PlayerInputForm = () => {
 
       setSuccessMessage("The player has been successfuly added");
       increment();
-      setFormValues({ username: "", pic: {}, car: {} });
+      setFormValues({ username: "", playerName: "", pic: {}, car: {} });
       setTimeout(() => {
         setSuccessMessage(false);
       }, 1500);
@@ -57,14 +58,6 @@ const PlayerInputForm = () => {
       setError("Username, name, pic and car are required");
     }
   };
-
-  //   useEffect(() => {
-  //     if (toDoForEdit) {
-  //       setFormValues(toDoForEdit);
-  //     } else {
-  //       setFormValues({ title: "", content: "" });
-  //     }
-  //   }, [toDoForEdit]);
 
   const handleInputChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -222,33 +215,40 @@ const PlayerInputForm = () => {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col">Lane</th>
-                <th scope="col"> Pic + Username</th>
-                <th scope="col"> photoCar + Name</th>
+                <th scope="col text-center">Lane</th>
+                <th scope="col text-center" style={{ textAlign: "center" }}>
+                  Player
+                </th>
+                <th scope="col text-center" style={{ textAlign: "center" }}>
+                  Car
+                </th>
               </tr>
             </thead>
             <tbody>
-              {game.playerList.map((player) => (
+              {game?.playerList?.map((player) => (
                 <tr key={player.username}>
                   <th scope="row">{player.lane}</th>
                   <td>
-                    <div className="d-flex justify-content-around">
+                    <div
+                      className="d-flex justify-content-start"
+                      style={{ width: "20" }}
+                    >
                       <img
                         src={player.pic.url}
                         alt={player.pic.name}
                         width="40"
                       />
-                      <p>{player.playerName}</p>
+                      <h4 className="ml-3">{player.username}</h4>
                     </div>
                   </td>
                   <td>
-                    <div className="d-flex justify-content-around">
+                    <div className="d-flex justify-content-start">
                       <img
                         src={player.car.url}
                         alt={player.car.name}
                         width="40"
                       />
-                      <p>{player.car.name}</p>
+                      <h4 className="ml-3">{player.car.name}</h4>
                     </div>
                   </td>
                 </tr>
