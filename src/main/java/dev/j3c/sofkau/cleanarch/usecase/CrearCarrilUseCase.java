@@ -26,9 +26,12 @@ public class CrearCarrilUseCase implements Function<CarroCreado, List<DomainEven
     public List<DomainEvent> apply(CarroCreado carroCreado) {
         var events = repository.getEventsBy("juego", carroCreado.getJuegoId());
         var event = (JuegoCreado) events.get(0);
-        System.out.println("Kilometros: " + event.getKilometros());
+
 
         Carril carril = new Carril(String.valueOf(carroCreado.getCarroId().hashCode()), carroCreado.getJuegoId(), event.getKilometros()*1000);
+        System.out.println("Carril creado");
+        carril.aggregarCarro(carroCreado.getCarroId());
+        System.out.println("carro agregado");
         return carril.getUncommittedChanges();
     }
 }
