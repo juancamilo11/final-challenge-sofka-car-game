@@ -71,7 +71,7 @@ const PlayerInputForm = () => {
       }, 1500);
       setError(false);
     } else {
-      setError("Username, name, pic and car are required");
+      setError("All inputs are required and must to be allowed values.");
     }
   };
 

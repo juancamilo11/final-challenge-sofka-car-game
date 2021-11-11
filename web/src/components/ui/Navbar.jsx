@@ -73,7 +73,7 @@ export const Navbar = () => {
               onClick={() => handleGoAhead()}
             >
               <span>
-                Go! <i className="fas fa-play button-icon"></i>
+                Go! <i class="fas fa-car-side button-icon"></i>
               </span>
             </button>
           )}

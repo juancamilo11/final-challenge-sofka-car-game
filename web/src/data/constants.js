@@ -17,10 +17,25 @@ const validValues = (lengthKm, numPlayers) => {
 };
 
 const validateInputPlayerForm = (formValues) => {
+  const usernameRegex = new RegExp(
+    "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"
+  );
+
+  const nameRegex = new RegExp("^[A-Z a-z]{1,}[.]{0,1}[A-Z a-z]{0,}$");
+
   const { username, playerName, pic, car } = formValues;
   if (username?.trim().length < 3 || username?.trim().length > 20) {
     return false;
   }
+
+  if (!usernameRegex.test(username)) {
+    return false;
+  }
+
+  if (!nameRegex.test(playerName)) {
+    return false;
+  }
+
   if (playerName?.trim().length < 3 || playerName?.trim().length > 50) {
     return false;
   }
