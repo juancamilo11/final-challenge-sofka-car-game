@@ -21,6 +21,13 @@ export const Navbar = () => {
     }
   };
 
+  const handleGoAhead = () => {
+    dispatch({
+      type: types.moveCars,
+      payload: game,
+    });
+  };
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <Link className="navbar-brand mx-5" to="/">
@@ -51,6 +58,16 @@ export const Navbar = () => {
 
       <div>
         <ul className="navbar-nav ml-auto">
+          {game.playing && (
+            <button
+              className="btn btn-primary mr-3"
+              onClick={() => handleGoAhead()}
+            >
+              <span>
+                Go! <i className="fas fa-play button-icon"></i>
+              </span>
+            </button>
+          )}
           <button className="btn btn-primary" onClick={() => handleResume()}>
             {!game.playing ? (
               <span>

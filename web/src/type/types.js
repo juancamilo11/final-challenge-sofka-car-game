@@ -5,6 +5,7 @@ const types = {
   addPlayerToGame: "[game] add player",
   startGame: "[game] start game",
   finishGame: "[game] finish game",
+  moveCars: "[game] move cars",
 };
 
 export default types;

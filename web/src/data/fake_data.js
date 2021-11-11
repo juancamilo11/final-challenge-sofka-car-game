@@ -1,4 +1,4 @@
-const game = {
+const fake_game = {
   //USar para mirar estilso y demas y luego quitar para no tener conflictos con el context
   lengthKm: 4,
   playerList: [
@@ -225,4 +225,4 @@ const game = {
   ],
 };
 
-export default game;
+export default fake_game;

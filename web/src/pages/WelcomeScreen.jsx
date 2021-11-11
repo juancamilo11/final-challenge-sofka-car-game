@@ -111,8 +111,12 @@ const WelcomeScreen = ({ history }) => {
                 value={lengthKm}
                 onChange={handleInputChange}
               />
+              <input
+                type="submit"
+                className="btn btn-primary mt-5 form-control"
+                value="Send"
+              />
             </div>
-            <input type="submit" className="btn btn-primary" value="Send" />
           </form>
         </div>
       )}

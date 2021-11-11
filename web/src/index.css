@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: darkgray;
+  user-select: none;
 }
 
 code {
@@ -138,7 +139,7 @@ code {
 .img-car-frame {
   height: 50px;
   position: relative;
-  left: 100px;
+  /* left: 5px; */
   top: 20px;
 }
 

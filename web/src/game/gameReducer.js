@@ -1,4 +1,5 @@
 import types from "../type/types";
+import { getNewRandomDistance } from "../actions/demoPlaying";
 
 export const gameReducer = (state = {}, action) => {
   switch (action.type) {
@@ -34,6 +35,17 @@ export const gameReducer = (state = {}, action) => {
       return {
         ...action.payload,
         finished: true,
+      };
+      return {
+        ...action.payload,
+        playerList: playerList.map((player) =>
+          player.distance >= action.payload.lengthKm
+            ? {
+                ...player,
+                distance: (player.distance += getNewRandomDistance()),
+              }
+            : player
+        ),
       };
     default:
       return state;
