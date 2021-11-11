@@ -50,7 +50,13 @@ const PlayerInputForm = () => {
         type: types.addPlayerToGame,
         payload: {
           game,
-          data: { ...formValues, lane: counter, id: uniqueString() }, //Counter -> Lane
+          data: {
+            ...formValues,
+            lane: counter, //Counter -> Lane
+            id: uniqueString(),
+            distance: 0,
+            position: 0,
+          },
         },
       });
 

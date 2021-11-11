@@ -101,3 +101,22 @@ code {
   margin-right: 25%;
   border: none;
 }
+
+.game-frame {
+  margin-left: 30px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  height: 1200px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.lane-frame {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.game-container {
+  background-color: darkgray;
+}
