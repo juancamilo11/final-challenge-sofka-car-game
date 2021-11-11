@@ -30,7 +30,7 @@ const GameScreen = () => {
                 {game.playerList.map((player) => (
                   <tr key={player.id}>
                     <div className="lane-frame">
-                      <td className="lane-info">
+                      <td className="lane-info pr-1">
                         <small>
                           <b>{player.username}</b>
                         </small>
@@ -42,11 +42,13 @@ const GameScreen = () => {
                       </td>
                       {/* Si algo hacerle un overflox en x */}
                       <td>
-                        <img
-                          src={player.car.url}
-                          alt={player.car.name}
-                          className="img-car-frame"
-                        />
+                        <div className="img-car-frame">
+                          <img
+                            src={player.car.url}
+                            alt={player.car.name}
+                            width="50px"
+                          />
+                        </div>
                       </td>
                     </div>
                   </tr>

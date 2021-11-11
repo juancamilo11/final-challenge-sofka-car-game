@@ -111,6 +111,7 @@ code {
 }
 
 .lane-frame {
+  position: relative;
   border: 1px dashed black;
   height: 60px;
   width: 100%;
@@ -136,6 +137,9 @@ code {
 
 .img-car-frame {
   height: 50px;
+  position: relative;
+  left: 100px;
+  top: 20px;
 }
 
 .img-pic-frame {

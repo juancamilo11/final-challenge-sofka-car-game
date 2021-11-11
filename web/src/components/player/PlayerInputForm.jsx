@@ -100,7 +100,7 @@ const PlayerInputForm = () => {
     <>
       <div className="row">
         <div className="col-6 ml-5">
-          <h2 className="text-center my-2">New player form</h2>
+          <h2 className="text-center mt-2 mb-5">New player form</h2>
           <form onSubmit={handleSubmit}>
             {game.numPlayers - counter + 1 !== 0 && (
               <div className="d-flex justify-content-between">
