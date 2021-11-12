@@ -73,3 +73,23 @@ export const startGameAction = async (game) => {
     console.log(err);
   }
 };
+
+export const moveCarsAction = async (game) => {
+  try {
+    const res = await fetch(`${URL_BASE}/moveCar/${game.gameId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+    //Al final se hace el dispatch del estado en base al resultado de la petición
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};

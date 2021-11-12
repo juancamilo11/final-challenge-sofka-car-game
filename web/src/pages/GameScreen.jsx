@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { getNewRandomDistance } from "../actions/demoPlaying";
 import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
@@ -7,16 +8,33 @@ import types from "../type/types";
 
 const GameScreen = ({ history }) => {
   const { game, dispatch } = useContext(GameContext);
-  useEffect(() => {
-    if (game.numPlayers <= 0 && game.playerList.length === 0) {
-      history.replace("/");
-    }
-    dispatch({ type: types.verifyDistances, payload: game });
-  }, [game.playList]);
+  const [trigger, setTrigger] = useState(0);
+  const deplayRef = useRef(game.playing);
+
+  // useEffect(() => {
+  //   if (game.numPlayers <= 0 && game.playerList.length === 0) {
+  //     history.replace("/");
+  //   }
+  //   dispatch({ type: types.verifyDistances, payload: game });
+  // }, [game.playerList]);
 
   useEffect(() => {
     dispatch({ type: types.verifyDistances, payload: game });
   }, []);
+
+  useEffect(() => {
+    deplayRef.current = game.playing;
+  }, [game.playing]);
+
+  useEffect(() => {
+    if (deplayRef.current) {
+      setTimeout(() => {
+        setTrigger(trigger + 1);
+        //dispatch({ type: types.moveCars, payload: game });
+        console.log("HOLAAAAA!!!!!!");
+      }, 2000);
+    }
+  }, [trigger, game.playing]);
 
   const getComputedDistance = (player) => {
     return (player?.distance * 1725) / (1000 * game.lengthKm);
