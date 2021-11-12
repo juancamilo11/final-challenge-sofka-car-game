@@ -19,7 +19,7 @@ const GameScreen = ({ history }) => {
   }, []);
 
   const getComputedDistance = (player) => {
-    return (player.distance * 1725) / (1000 * game.lengthKm);
+    return (player?.distance * 1725) / (1000 * game.lengthKm);
   };
   //recorrer y verificar los que ya seleccionaron OJO CON EL ANCHO DE LA VENTANA DE JUEGO
   // document.getElementById("yourDiv").clientWidth;
@@ -73,7 +73,12 @@ const GameScreen = ({ history }) => {
                             alt={player.car.name}
                             width="50px"
                             style={{
-                              marginLeft: `${getComputedDistance(player)}%`,
+                              marginLeft: `${
+                                player.distance > game.lengthKm * 1000
+                                  ? 1725
+                                  : (player?.distance * 1725) /
+                                    (1000 * game.lengthKm)
+                              }%`,
                             }}
                           />
                         </div>

@@ -43,13 +43,6 @@ const PlayerInputForm = () => {
     console.log(formValues);
     const result = validateInputPlayerForm(game, formValues);
     if (result === true) {
-      //       /addPlayer
-      // {
-      //     "gameId":"111121111011",
-      //     "name":"Farid",
-      //     "username":"Atos"
-      // }
-
       const newPlayer = {
         gameId: game.gameId,
         username,
