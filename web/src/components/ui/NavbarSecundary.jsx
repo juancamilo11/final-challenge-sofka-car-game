@@ -9,7 +9,7 @@ const NavbarSecundary = () => {
       className="navbar navbar-expand-sm navbar-dark bg-dark"
       style={{ borderRadius: "0px" }}
     >
-      <Link className="navbar-brand mx-5" to="/">
+      <Link className="navbar-brand mr-5" to="/">
         RandomCarRaceApp
       </Link>
 

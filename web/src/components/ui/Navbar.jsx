@@ -90,7 +90,7 @@ export const Navbar = () => {
             exact
             to="/player-list"
           >
-            List of players
+            List of Players
           </NavLink>
 
           <NavLink
@@ -99,7 +99,7 @@ export const Navbar = () => {
             exact
             to="/podium-list"
           >
-            List of podiums
+            List of Podiums
           </NavLink>
         </div>
       </div>

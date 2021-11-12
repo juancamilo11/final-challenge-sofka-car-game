@@ -245,12 +245,13 @@ const PlayerInputForm = () => {
               </div>
             )}
 
-            <input
+            <button
               type="submit"
               disabled={game.numPlayers - counter + 1 <= 0}
               className="btn btn-primary form-control m-3"
-              value="Input new player"
-            />
+            >
+              Input new player <i class="fas fa-sign-in-alt button-icon"></i>
+            </button>
           </form>
 
           {game.numPlayers - counter + 1 <= 0 && (
