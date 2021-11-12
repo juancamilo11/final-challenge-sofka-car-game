@@ -56,19 +56,19 @@ export const gameReducer = (state = {}, action) => {
         finished: true,
       };
     case types.moveCars:
-      console.log("Entrando al dispatch");
-      const { game, data } = action.payload;
-      console.log(data.find((result) => result.name === "Maserati 250F"));
       return {
-        ...game,
-        playerList: game.playerList.map((player) =>
-          player.distance < game.lengthKm * 1000 &&
+        ...action.payload.game,
+        playerList: action.payload.game.playerList.map((player) =>
+          player.distance < action.payload.game.lengthKm * 1000 &&
           player.car.name ===
-            data.find((result) => result.name === player.car.name).name
+            action.payload.data.find(
+              (result) => result.name === player.car.name
+            ).name
             ? {
                 ...player,
-                distance: data.find((result) => result.name === player.car.name)
-                  .distance,
+                distance: action.payload.data.find(
+                  (result) => result.name === player.car.name
+                ).distance,
               }
             : player
         ),
