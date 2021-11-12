@@ -17,7 +17,7 @@ const GameScreen = ({ history }) => {
   const getComputedDistance = (player) => {
     return (player.distance * 1700) / (1000 * game.lengthKm);
   };
-
+  //recorrer y verificar los que ya seleccionaron OJO CON EL ANCHO DE LA VENTANA DE JUEGO
   // document.getElementById("yourDiv").clientWidth;
 
   return (

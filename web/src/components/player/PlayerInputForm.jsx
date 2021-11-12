@@ -37,6 +37,7 @@ const PlayerInputForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("FOrm values");
     console.log(formValues);
     const result = validateInputPlayerForm(game, formValues);
     if (result === true) {
@@ -48,6 +49,7 @@ const PlayerInputForm = () => {
 
       // addPlayerToGameAction(newPlayer).then((result) => {
       // result.status === 200 &&
+
       dispatch({
         type: types.addPlayerToGame,
         payload: {
@@ -58,6 +60,10 @@ const PlayerInputForm = () => {
             id: uniqueString(),
             distance: 0,
             position: 0,
+          },
+          metadata: {
+            newPicId: formValues.pic.id,
+            newCarId: formValues.car.id,
           },
         },
       });
@@ -147,18 +153,20 @@ const PlayerInputForm = () => {
                 <span className="mr-3">Select your pic</span>
               </button>
               <ul className="dropdown-menu">
-                {photos_data.map((pic) => (
-                  <li
-                    key={pic.id}
-                    onClick={() => handleSelectInputChange(pic, "pic")}
-                  >
-                    <div className="m-3">
-                      <img src={pic.url} width="100px" alt={pic.name} />
-                      <span className="ml-5 text-center">{pic.name}</span>
-                      <span className=""></span>
-                    </div>
-                  </li>
-                ))}
+                {photos_data
+                  .filter((pic) => !game.selectedPicsId.includes(pic.id))
+                  .map((pic) => (
+                    <li
+                      key={pic.id}
+                      onClick={() => handleSelectInputChange(pic, "pic")}
+                    >
+                      <div className="m-3">
+                        <img src={pic.url} width="100px" alt={pic.name} />
+                        <span className="ml-5 text-center">{pic.name}</span>
+                        <span className=""></span>
+                      </div>
+                    </li>
+                  ))}
               </ul>
             </div>
 
@@ -183,39 +191,49 @@ const PlayerInputForm = () => {
                 <span className="mr-3">Select your car</span>
               </button>
               <ul className="dropdown-menu">
-                {car_data.map((carPhoto) => (
-                  <li key={carPhoto.id} title={carPhoto.description}>
-                    <a
-                      href="#hola"
-                      className="m-3 input-select"
-                      onClick={() => handleSelectInputChange(carPhoto, "car")}
-                    >
-                      <table className="table">
-                        <tbody>
-                          <tr>
-                            <th scope="row" className="select-row">
-                              <img
-                                src={carPhoto.url}
-                                width="100px"
-                                alt={carPhoto.description}
-                              />
-                            </th>
-                            <td className="select-row">
-                              <span className="ml-5 text-center" width="100px">
-                                {carPhoto.name}
-                              </span>
-                            </td>
-                            <td className="select-row">
-                              <span className="ml-5 text-center" width="100px">
-                                {carPhoto.description}
-                              </span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </a>
-                  </li>
-                ))}
+                {car_data
+                  .filter(
+                    (carPhoto) => !game.selectedCarsId.includes(carPhoto.id)
+                  )
+                  .map((carPhoto) => (
+                    <li key={carPhoto.id} title={carPhoto.description}>
+                      <a
+                        href="#hola"
+                        className="m-3 input-select"
+                        onClick={() => handleSelectInputChange(carPhoto, "car")}
+                      >
+                        <table className="table">
+                          <tbody>
+                            <tr>
+                              <th scope="row" className="select-row">
+                                <img
+                                  src={carPhoto.url}
+                                  width="100px"
+                                  alt={carPhoto.description}
+                                />
+                              </th>
+                              <td className="select-row">
+                                <span
+                                  className="ml-5 text-center"
+                                  width="100px"
+                                >
+                                  {carPhoto.name}
+                                </span>
+                              </td>
+                              <td className="select-row">
+                                <span
+                                  className="ml-5 text-center"
+                                  width="100px"
+                                >
+                                  {carPhoto.description}
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </a>
+                    </li>
+                  ))}
               </ul>
             </div>
 

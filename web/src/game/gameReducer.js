@@ -29,9 +29,14 @@ export const gameReducer = (state = {}, action) => {
       };
     case types.addPlayerToGame:
       const { playerList } = action.payload.game;
+      const { newPicId, newCarId } = action.payload.metadata;
+      const { selectedCarsId, selectedPicsId } = action.payload.game;
+
       return {
         ...action.payload.game,
         playerList: [...playerList, action.payload.data],
+        selectedCarsId: [...selectedCarsId, newCarId],
+        selectedPicsId: [...selectedPicsId, newPicId],
       };
     case types.startGame:
       return {
@@ -44,7 +49,6 @@ export const gameReducer = (state = {}, action) => {
         finished: true,
       };
     case types.moveCars:
-      console.log("moviendo carros...");
       return {
         ...action.payload,
         playerList: action.payload.playerList.map((player) =>
@@ -68,7 +72,6 @@ export const gameReducer = (state = {}, action) => {
         ),
       };
     case types.verifyDistances:
-      console.log("corrigiendo distancias...");
       return {
         ...action.payload,
         playerList: action.payload.playerList.map((player) =>

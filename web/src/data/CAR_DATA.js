@@ -2,7 +2,7 @@ import uniqueString from "unique-string";
 
 const car_data = [
   {
-    id: uniqueString(),
+    id: 1,
     name: "Volvo 800 T4",
     availableAtLevel: 1,
     selected: false,
@@ -10,7 +10,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car1.png",
   },
   {
-    id: uniqueString(),
+    id: 2,
     name: "Maserati 250F",
     availableAtLevel: 2,
     selected: false,
@@ -18,7 +18,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car2.png",
   },
   {
-    id: uniqueString(),
+    id: 3,
     name: "Mazda RX-7",
     availableAtLevel: 3,
     selected: false,
@@ -26,7 +26,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car3.png",
   },
   {
-    id: uniqueString(),
+    id: 4,
     name: "Aston Martin DB9",
     availableAtLevel: 4,
     selected: false,
@@ -34,7 +34,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car4.png",
   },
   {
-    id: uniqueString(),
+    id: 5,
     name: "Dodge Viper STR-10",
     availableAtLevel: 5,
     selected: false,
@@ -42,7 +42,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car5.png",
   },
   {
-    id: uniqueString(),
+    id: 6,
     name: "Corvette CS6",
     availableAtLevel: 6,
     selected: false,
@@ -50,7 +50,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car6.png",
   },
   {
-    id: uniqueString(),
+    id: 7,
     name: "McLaren F1 GTR",
     availableAtLevel: 7,
     selected: false,
@@ -58,7 +58,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car7.png",
   },
   {
-    id: uniqueString(),
+    id: 8,
     name: "McLaren MP4/4",
     availableAtLevel: 8,
     selected: false,
@@ -66,7 +66,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car8.png",
   },
   {
-    id: uniqueString(),
+    id: 9,
     name: "Porsche 911",
     availableAtLevel: 9,
     selected: false,
@@ -74,7 +74,7 @@ const car_data = [
     url: process.env.PUBLIC_URL + "/assets/img-car/car9.png",
   },
   {
-    id: uniqueString(),
+    id: 10,
     name: "Porsche carrera GT",
     availableAtLevel: 10,
     selected: false,

@@ -107,7 +107,7 @@ const WelcomeScreen = ({ history }) => {
                 type="text"
                 name="numPlayers"
                 className="form-control"
-                placeholder="Number of players"
+                placeholder="Number of players [Max:10]"
                 value={numPlayers}
                 onChange={handleInputChange}
               />
@@ -115,7 +115,7 @@ const WelcomeScreen = ({ history }) => {
                 type="text"
                 name="lengthKm"
                 className="form-control mt-3"
-                placeholder="Length for the lanes (Km)"
+                placeholder="Length for the lanes(Km) [Max:100]"
                 value={lengthKm}
                 onChange={handleInputChange}
               />
