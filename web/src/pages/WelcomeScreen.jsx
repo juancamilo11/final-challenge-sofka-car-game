@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, history } from "react-router-dom";
 import { useForm } from "../components/hooks/useForm";
 import { validValues } from "../data/constants";
@@ -69,6 +69,10 @@ const WelcomeScreen = ({ history }) => {
     }
     reset();
   };
+
+  useEffect(() => {
+    dispatch({ type: types.resetAppState, payload: game });
+  }, []);
 
   return (
     <div className="container welcome-container ms-3 animate__animated animate__fadeIn">

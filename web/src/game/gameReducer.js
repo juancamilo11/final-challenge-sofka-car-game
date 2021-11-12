@@ -1,5 +1,6 @@
 import types from "../type/types";
 import { getNewRandomDistance } from "../actions/demoPlaying";
+import { initialState } from "../CarGameApp";
 
 export const gameReducer = (state = {}, action) => {
   switch (action.type) {
@@ -79,6 +80,24 @@ export const gameReducer = (state = {}, action) => {
             : player
         ),
       };
+    case types.setPositions:
+      let playerPosition = 1;
+      return {
+        ...action.payload,
+        playerList: action.payload.playerList
+          .sort((player1, player2) => player2 - player1)
+          .map((player) => {
+            return {
+              ...player,
+              position:
+                player.distance !== action.payload.lengthKm
+                  ? playerPosition++
+                  : player.position,
+            };
+          }),
+      };
+    case types.resetAppState:
+      return initialState;
     default:
       return state;
   }
