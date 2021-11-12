@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
@@ -6,16 +6,20 @@ import types from "../type/types";
 //import fake_game from "../data/fake_data";
 
 const GameScreen = ({ history }) => {
-  const { game } = useContext(GameContext);
-
+  const { game, dispatch } = useContext(GameContext);
   useEffect(() => {
     if (game.numPlayers <= 0 && game.playerList.length === 0) {
       history.replace("/");
     }
+    dispatch({ type: types.verifyDistances, payload: game });
+  }, [game.playList]);
+
+  useEffect(() => {
+    dispatch({ type: types.verifyDistances, payload: game });
   }, []);
 
   const getComputedDistance = (player) => {
-    return (player.distance * 1700) / (1000 * game.lengthKm);
+    return (player.distance * 1725) / (1000 * game.lengthKm);
   };
   //recorrer y verificar los que ya seleccionaron OJO CON EL ANCHO DE LA VENTANA DE JUEGO
   // document.getElementById("yourDiv").clientWidth;

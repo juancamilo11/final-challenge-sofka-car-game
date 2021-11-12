@@ -1,4 +1,4 @@
-const URL_BASE = "http://localhost:8080/api";
+const URL_BASE = "https://young-cliffs-41883.herokuapp.com/";
 
 export const createGameAction = async (newGame) => {
   const { gameId, lengthKm, numPlayers } = newGame;

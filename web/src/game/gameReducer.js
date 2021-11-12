@@ -74,11 +74,11 @@ export const gameReducer = (state = {}, action) => {
     case types.verifyDistances:
       return {
         ...action.payload,
-        playerList: action.payload.playerList.map((player) =>
-          player.distance > action.payload.lengthKm * 1000
+        playerList: action.payload.playerList.map((player) => {
+          return player.distance > action.payload.lengthKm * 1000
             ? { ...player, distance: action.payload.lengthKm * 1000 }
-            : player
-        ),
+            : { ...player };
+        }),
       };
     case types.setPositions:
       let playerPosition = 1;
