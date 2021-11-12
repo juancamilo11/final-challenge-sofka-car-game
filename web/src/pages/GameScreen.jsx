@@ -88,7 +88,7 @@ const GameScreen = ({ history }) => {
                               marginLeft: `${
                                 player.distance > game.lengthKm * 1000
                                   ? 1725
-                                  : (player?.distance * 1725) /
+                                  : (player?.distance * 1705) /
                                     (1000 * game.lengthKm)
                               }%`,
                             }}

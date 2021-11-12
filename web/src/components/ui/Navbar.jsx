@@ -120,16 +120,6 @@ export const Navbar = () => {
               </button>
             </div>
           )}
-          {game.playing && !game.finished && (
-            <button
-              className="btn btn-primary mr-3"
-              onClick={() => handleGoAhead()}
-            >
-              <span>
-                Go! <i className="fas fa-car-side button-icon"></i>
-              </span>
-            </button>
-          )}
           {!game.finished && (
             <button className="btn btn-primary" onClick={() => handleResume()}>
               {!game.playing ? (
