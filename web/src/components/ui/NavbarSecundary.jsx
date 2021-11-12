@@ -6,7 +6,10 @@ const NavbarSecundary = () => {
   const { game } = useContext(GameContext);
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav
+      className="navbar navbar-expand-sm navbar-dark bg-dark"
+      style={{ borderRadius: "0px" }}
+    >
       <Link className="navbar-brand mx-5" to="/">
         RandomCarRaceApp
       </Link>
@@ -31,6 +34,16 @@ const NavbarSecundary = () => {
             List of podiums
           </NavLink>
         </div>
+      </div>
+
+      <div>
+        <ul className="navbar-nav mr-3">
+          {game.finished && (
+            <button className="btn btn-warning" to="/">
+              Play new game <i class="fas fa-redo-alt button-icon"></i>
+            </button>
+          )}
+        </ul>
       </div>
 
       <div>

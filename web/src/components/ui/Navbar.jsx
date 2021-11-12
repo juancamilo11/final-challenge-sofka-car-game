@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
+import swal from "sweetalert";
 import { GameContext } from "../../game/gameContext";
 import types from "../../type/types";
 
@@ -29,7 +30,23 @@ export const Navbar = () => {
   };
 
   const handleGoToPodium = () => {
+    dispatch({
+      type: types.stopGame,
+      payload: game,
+    });
     history.push("/podium");
+  };
+
+  const handleNewGame = () => {
+    swal("Are you sure you want to start a new race?", {
+      buttons: ["CANCEL", true],
+    }).then((res) => history.replace("/"));
+  };
+
+  const handleResetGame = () => {
+    swal("Are you sure you want to reset the current game?", {
+      buttons: [false, true],
+    }).then((res) => dispatch({ type: types.resetGame, payload: game }));
   };
 
   return (
@@ -105,8 +122,12 @@ export const Navbar = () => {
               </span>
             )}
           </button>
-          <button className="btn btn-primary mx-3">Reset game</button>
-          <button className="btn btn-primary">New game</button>
+          <button className="btn btn-primary mx-3" onClick={handleResetGame}>
+            Reset game
+          </button>
+          <button className="btn btn-primary" onClick={handleNewGame}>
+            New game
+          </button>
         </ul>
       </div>
     </nav>

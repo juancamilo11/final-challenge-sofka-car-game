@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
-import fake_game from "../data/fake_data";
+//import fake_game from "../data/fake_data";
 
 const GameScreen = () => {
   const { game, dispatcher } = useContext(GameContext);

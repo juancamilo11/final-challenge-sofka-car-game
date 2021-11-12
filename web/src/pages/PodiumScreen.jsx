@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GameContext } from "../game/gameContext";
 import fake_game from "../data/fake_data";
+import { Navbar } from "../components/ui/Navbar";
+import { Footer } from "../components/ui/Footer";
+import NavbarSecundary from "../components/ui/NavbarSecundary";
 
 const PodiumScreen = ({ history }) => {
   const [winners, setWinners] = useState({
@@ -32,7 +35,10 @@ const PodiumScreen = ({ history }) => {
 
   return (
     <div>
-      <h1 className="display-2 text-center mb-3">...And the winners are</h1>
+      <NavbarSecundary />
+      <h1 className="display-2 text-center podiums-title">
+        ...And the winners are
+      </h1>
       <div className="container podium-container">
         <div className="row">
           <div className="col-sm card splace-container">
@@ -47,16 +53,13 @@ const PodiumScreen = ({ history }) => {
                 <img
                   src={
                     process.env.PUBLIC_URL +
-                    `/assets/img-podium/silver-medal-64.png`
+                    `/assets/img-podium/silver-medal-128.png`
                   }
                   alt="podium-position"
                   className="img-podium-card animate__animated animate__fadeInLeft"
                 />
                 <img
-                  src={
-                    process.env.PUBLIC_URL +
-                    `/assets/img-podium/silver-medal-64.png`
-                  }
+                  src={winners?.secondPlace.pic?.url}
                   alt="podium-position"
                   className="img-photo-card animate__animated animate__fadeInLeft"
                 />
@@ -75,50 +78,47 @@ const PodiumScreen = ({ history }) => {
               <img
                 src={
                   process.env.PUBLIC_URL +
-                  `/assets/img-podium/gold-medal-64.png`
+                  `/assets/img-podium/gold-medal-128.png`
                 }
                 alt="podium-position"
                 className="img-podium-card animate__animated animate__fadeInLeft"
               />
               <img
-                src={
-                  process.env.PUBLIC_URL +
-                  `/assets/img-podium/gold-medal-64.png`
-                }
+                src={winners?.firstPlace.pic?.url}
                 alt="podium-position"
                 className="img-photo-card animate__animated animate__fadeInLeft"
               />
             </div>
           </div>
 
-          <div className="col-sm card tplace-container">
-            <h2 className="display-4">Third Place</h2>
-            <hr />
-            <h4>
-              <spam className="small">{winners?.thirdPlace.username}</spam> -
-              {winners?.thirdPlace.playerName}
-            </h4>
-            <div className="d-block container-images">
-              <img
-                src={
-                  process.env.PUBLIC_URL +
-                  `/assets/img-podium/bronze-medal-64.png`
-                }
-                alt="podium-position"
-                className="img-podium-card animate__animated animate__fadeInLeft"
-              />
-              <img
-                src={
-                  process.env.PUBLIC_URL +
-                  `/assets/img-podium/bronze-medal-64.png`
-                }
-                alt="podium-position"
-                className="img-photo-card animate__animated animate__fadeInLeft"
-              />
+          <div className="col-sm card splace-container">
+            <div className="">
+              <h2 className="display-4">Third Place</h2>
+              <hr />
+              <h4>
+                <spam className="small">{winners?.thirdPlace.username}</spam> -
+                {winners?.thirdPlace.playerName}
+              </h4>
+              <div className="d-block container-images">
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    `/assets/img-podium/bronze-medal-128.png`
+                  }
+                  alt="podium-position"
+                  className="img-podium-card animate__animated animate__fadeInLeft"
+                />
+                <img
+                  src={winners?.thirdPlace.pic?.url}
+                  alt="podium-position"
+                  className="img-photo-card animate__animated animate__fadeInLeft"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
