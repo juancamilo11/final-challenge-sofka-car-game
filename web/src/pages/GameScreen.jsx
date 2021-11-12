@@ -5,10 +5,14 @@ import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
 import types from "../type/types";
 
-const GameScreen = () => {
+const GameScreen = ({ history }) => {
   const { game, dispatch } = useContext(GameContext);
   const [trigger, setTrigger] = useState(0);
   const deplayRef = useRef(game.playing);
+
+  if (game.playerList.length !== game.numPlayers) {
+    history.replace("/");
+  }
 
   useEffect(() => {
     dispatch({ type: types.verifyDistances, payload: game });

@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GameContext } from "../game/gameContext";
+import fake_game from "../data/fake_game";
+import { Navbar } from "../components/ui/Navbar";
 import { Footer } from "../components/ui/Footer";
 import NavbarSecundary from "../components/ui/NavbarSecundary";
-import getAllPodiums from "../data/podiumList";
 
 const PodiumScreen = ({ history }) => {
   const { game } = useContext(GameContext);
@@ -20,7 +21,7 @@ const PodiumScreen = ({ history }) => {
   }, []);
 
   const getWinners = () =>
-    getAllPodiums()
+    fake_game.playerList
       .filter((player) => player.position <= 3 && player.position > 0)
       .sort((position1, position2) => position1 - position2)
       .reverse();
