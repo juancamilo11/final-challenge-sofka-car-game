@@ -5,7 +5,7 @@ const SetupGameScreen = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="text-center display-4 my-3 animate__animated animate__fadeIn">
+        <h1 className="text-center display-4 my-4 animate__animated animate__fadeIn">
           Game Setup
         </h1>
         <hr />

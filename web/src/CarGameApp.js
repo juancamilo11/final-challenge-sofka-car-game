@@ -69,7 +69,6 @@ const initialState = {
   numPlayers: -1,
   playing: false,
   playerList: [],
-  numRound: -1,
   finished: true,
 };
 

@@ -1,18 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { GameContext } from "../../game/gameContext";
 
 const PlayerCard = ({ id, playerName, username, car, pic }) => {
+  const { game } = useContext(GameContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (game.numPlayers <= 0 && game.playerList.length === 0) {
+      history.replace("/");
+    }
+  }, []);
+
   return (
     <div className="card ms-3 animate__animated animate__fadeIn">
       <div className="row no-gutters">
         <div className="col-md-4">
           <img
-            src={process.env.PUBLIC_URL + `${pic.url}`} //cambiar por el id de la imgen
+            src={process.env.PUBLIC_URL + `${pic?.url}`} //cambiar por el id de la imgen
             className="card-img img-logo"
             alt={playerName}
+            style={{ marginTop: "15px" }}
           />
           <img
-            src={process.env.PUBLIC_URL + `${car.url}`}
+            src={process.env.PUBLIC_URL + `${car?.url}`}
             className="card-img img-car"
             alt={playerName}
           />
@@ -25,7 +36,7 @@ const PlayerCard = ({ id, playerName, username, car, pic }) => {
             {true && <p className="card-text"> {playerName} </p>}
 
             <p className="card-text">
-              <small className="text-muted">Is driving a {car.name}</small>
+              <small className="text-muted">Is driving a {car?.name}</small>
             </p>
 
             <Link to={`/player/${id}`}>Ver detalles del jugador...</Link>

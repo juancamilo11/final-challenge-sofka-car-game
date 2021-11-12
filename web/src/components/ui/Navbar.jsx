@@ -7,6 +7,7 @@ import types from "../../type/types";
 export const Navbar = () => {
   const { game, dispatch } = useContext(GameContext);
   const history = useHistory();
+
   const handleResume = () => {
     if (game.playing) {
       dispatch({
@@ -27,6 +28,8 @@ export const Navbar = () => {
       type: types.moveCars,
       payload: game,
     });
+    dispatch({ type: types.sortPlayer, payload: game });
+    dispatch({ type: types.verifyDistances, payload: game });
   };
 
   const handleGoToPodium = () => {
@@ -38,15 +41,28 @@ export const Navbar = () => {
   };
 
   const handleNewGame = () => {
-    swal("Are you sure you want to start a new race?", {
-      buttons: ["CANCEL", true],
-    }).then((res) => history.replace("/"));
+    swal({
+      title: "Do you really want to start a new game?",
+      icon: "warning",
+      buttons: ["Cancel", "Confirm"],
+    }).then((confirmation) => {
+      if (confirmation) {
+        dispatch({ type: types.resetGame, payload: game });
+        history.replace("/");
+      }
+    });
   };
 
   const handleResetGame = () => {
-    swal("Are you sure you want to reset the current game?", {
-      buttons: [false, true],
-    }).then((res) => dispatch({ type: types.resetGame, payload: game }));
+    swal({
+      title: "Do you really want to reset the current game?",
+      icon: "warning",
+      buttons: ["Cancel", "Confirm"],
+    }).then((confirmation) => {
+      if (confirmation) {
+        dispatch({ type: types.resetGame, payload: game });
+      }
+    });
   };
 
   return (

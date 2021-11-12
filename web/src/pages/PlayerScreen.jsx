@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { useParams, Redirect, Link } from "react-router-dom";
 import NavbarSecundary from "../components/ui/NavbarSecundary";
 import { GameContext } from "../game/gameContext";
@@ -6,6 +6,12 @@ import { GameContext } from "../game/gameContext";
 const PlayerScreen = ({ history }) => {
   const { id } = useParams();
   const { game } = useContext(GameContext);
+
+  useEffect(() => {
+    if (game.numPlayers <= 0 && game.playerList.length === 0) {
+      history.replace("/");
+    }
+  }, []);
 
   const getPlayerById = () => game.playerList.find((player) => player.id == id);
 

@@ -24,6 +24,10 @@ const WelcomeScreen = ({ history }) => {
     setStep((step) => step + 1);
   };
 
+  const handleGoToPodiums = () => {
+    history.push("/podium-list");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validValues(lengthKm, numPlayers)) {
@@ -80,10 +84,14 @@ const WelcomeScreen = ({ history }) => {
       <hr />
 
       {step === 0 && (
-        <div className="col text-center mt-5">
+        <div className="col text-center mt-5 d-block">
           <h3>Are you ready?</h3>
           <button className="btn btn-primary my-3" onClick={handleGoAhead}>
             Setup new game!
+          </button>
+          <p>or</p>
+          <button className="btn btn-info my-3" onClick={handleGoToPodiums}>
+            See the Podium History
           </button>
         </div>
       )}

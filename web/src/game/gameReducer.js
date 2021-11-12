@@ -1,5 +1,6 @@
 import types from "../type/types";
 import { getNewRandomDistance } from "../actions/demoPlaying";
+import { act } from "react-dom/test-utils";
 
 export const gameReducer = (state = {}, action) => {
   switch (action.type) {
@@ -9,9 +10,15 @@ export const gameReducer = (state = {}, action) => {
         playing: true,
       };
     case types.stopGame:
+      return state;
+    case types.resetGame:
       return {
         ...action.payload,
+        finished: false,
         playing: false,
+        playerList: action.payload.playerList.map((player) => {
+          return { ...player, distance: 0 };
+        }),
       };
     case types.createGame:
       return {
@@ -37,6 +44,7 @@ export const gameReducer = (state = {}, action) => {
         finished: true,
       };
     case types.moveCars:
+      console.log("moviendo carros...");
       return {
         ...action.payload,
         playerList: action.payload.playerList.map((player) =>
@@ -49,6 +57,23 @@ export const gameReducer = (state = {}, action) => {
                     ? action.payload.lengthKm * 1000
                     : player.distance,
               }
+            : player
+        ),
+      };
+    case types.sortPlayer:
+      return {
+        ...action.payload,
+        playerList: action.payload.playerList.sort(
+          (player1, player2) => player2.distance - player1.distance
+        ),
+      };
+    case types.verifyDistances:
+      console.log("corrigiendo distancias...");
+      return {
+        ...action.payload,
+        playerList: action.payload.playerList.map((player) =>
+          player.distance > action.payload.lengthKm * 1000
+            ? { ...player, distance: action.payload.lengthKm * 1000 }
             : player
         ),
       };

@@ -2,10 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
+import types from "../type/types";
 //import fake_game from "../data/fake_data";
 
-const GameScreen = () => {
-  const { game, dispatcher } = useContext(GameContext);
+const GameScreen = ({ history }) => {
+  const { game } = useContext(GameContext);
+
+  useEffect(() => {
+    if (game.numPlayers <= 0 && game.playerList.length === 0) {
+      history.replace("/");
+    }
+  }, []);
 
   const getComputedDistance = (player) => {
     return (player.distance * 1700) / (1000 * game.lengthKm);
@@ -49,8 +56,8 @@ const GameScreen = () => {
                           <b>{player.username}</b>
                         </small>
                         <img
-                          src={player.pic.url}
-                          alt={player.pic.name}
+                          src={player?.pic.url}
+                          alt={player?.pic.name}
                           className="img-pic-frame"
                         />
                       </td>

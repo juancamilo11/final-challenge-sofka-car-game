@@ -24,9 +24,11 @@ const PlayerInputForm = () => {
     car: {},
   });
 
-  if (game.numPlayers - counter + 1 <= 0 && game.playerList.length === 0) {
-    history.replace("/");
-  }
+  useEffect(() => {
+    if (game.numPlayers - counter + 1 <= 0 && game.playerList.length === 0) {
+      history.replace("/");
+    }
+  }, []);
 
   const { username, playerName } = formValues;
 

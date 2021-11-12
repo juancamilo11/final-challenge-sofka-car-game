@@ -6,16 +6,19 @@ import { Footer } from "../components/ui/Footer";
 import NavbarSecundary from "../components/ui/NavbarSecundary";
 
 const PodiumScreen = ({ history }) => {
+  const { game } = useContext(GameContext);
+
   const [winners, setWinners] = useState({
     firstPlace: {},
     secondPlace: {},
     thirdPlace: {},
   });
 
-  //const { game } = useContext(GameContext);
-  // if (!game.finished) {
-  //   history.goBack();
-  // }
+  useEffect(() => {
+    if (game.numPlayers <= 0 && game.playerList.length === 0) {
+      history.replace("/");
+    }
+  }, []);
 
   const getWinners = () =>
     fake_game.playerList
