@@ -41,29 +41,25 @@ const WelcomeScreen = ({ history }) => {
         numPlayers: numeroDeCarriles,
       };
 
-      // console.log(JSON.stringify(newGame));
-      // createGameAction(newGame)
-      //   .then((values) => {
-      //     if (values.status === 200) {
-      //       //Aquí se podría hacer el dispatch
-      //       swal("Nice job! Let's go ahead!");
-      dispatch({
-        type: types.createGame,
-        payload: {
-          game,
-          data: {
-            gameId: juegoId,
-            lengthKm: kilometros,
-            numPlayers: numeroDeCarriles,
-          },
-        },
-      });
-      history.replace("/setup-game");
-      //   }
-      // })
-      // .catch((err) => {
-      //   swal("Error:" + err);
-      // });
+      createGameAction(newGame)
+        .then((id) => {
+          swal("Nice job! Let's go ahead! " + id);
+          dispatch({
+            type: types.createGame,
+            payload: {
+              game,
+              data: {
+                gameId: juegoId,
+                lengthKm: kilometros,
+                numPlayers: numeroDeCarriles,
+              },
+            },
+          });
+          history.replace("/setup-game");
+        })
+        .catch((err) => {
+          swal("Error:" + err);
+        });
     } else {
       swal("Invalid inputs, please try again.");
     }
