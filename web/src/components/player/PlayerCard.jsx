@@ -10,7 +10,7 @@ const PlayerCard = ({ id, playerName, username, car, pic }) => {
     if (game.numPlayers <= 0 && game.playerList.length === 0) {
       history.replace("/");
     }
-  }, []);
+  }, [game.numPlayers]);
 
   return (
     <div className="card ms-3 animate__animated animate__fadeIn">

@@ -1,6 +1,6 @@
 const game_constants = {
   MAX_NUM_PLAYERS: 10,
-  MAX_LENGTH: 100,
+  MAX_LENGTH: 25,
 };
 
 const validValues = (lengthKm, numPlayers) => {

@@ -65,7 +65,8 @@ const PlayerScreen = ({ history }) => {
 
           <br />
           <Link className="btn btn-primary" to="/player-list">
-            Go back to list <i class="fas fa-clipboard-list button-icon"></i>
+            Go back to list{" "}
+            <i className="fas fa-clipboard-list button-icon"></i>
           </Link>
         </div>
       </div>

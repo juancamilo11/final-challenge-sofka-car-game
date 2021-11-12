@@ -87,11 +87,11 @@ const WelcomeScreen = ({ history }) => {
         <div className="col text-center mt-5 d-block">
           <h3>Are you ready?</h3>
           <button className="btn btn-primary my-3" onClick={handleGoAhead}>
-            Setup new game! <i class="fas fa-cog button-icon"></i>
+            Setup new game! <i className="fas fa-cog button-icon"></i>
           </button>
           <p>or</p>
           <button className="btn btn-info my-3" onClick={handleGoToPodiums}>
-            See the Podium History <i class="fas fa-trophy button-icon"></i>
+            See the Podium History <i className="fas fa-trophy button-icon"></i>
           </button>
         </div>
       )}
@@ -115,7 +115,7 @@ const WelcomeScreen = ({ history }) => {
                 type="text"
                 name="lengthKm"
                 className="form-control mt-3"
-                placeholder="Length for the lanes(Km) [Max:100]"
+                placeholder="Length for the lanes(Km) [Max:25]"
                 value={lengthKm}
                 onChange={handleInputChange}
               />
@@ -123,7 +123,7 @@ const WelcomeScreen = ({ history }) => {
                 type="submit"
                 className="btn btn-primary mt-5 form-control"
               >
-                Send<i class="fas fa-sign-in-alt button-icon"></i>
+                Send<i className="fas fa-sign-in-alt button-icon"></i>
               </button>
             </div>
           </form>

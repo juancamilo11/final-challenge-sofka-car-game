@@ -41,7 +41,7 @@ const NavbarSecundary = () => {
         <ul className="navbar-nav mr-3">
           {game.finished && (
             <Link className="btn btn-warning" to="/">
-              Play new game <i class="fas fa-play-circle button-icon"></i>
+              Play new game <i className="fas fa-play-circle button-icon"></i>
             </Link>
           )}
         </ul>
@@ -49,9 +49,9 @@ const NavbarSecundary = () => {
 
       <div>
         <ul className="navbar-nav ml-auto">
-          {!game.finished && (
+          {game.finished && game.playerList.length > 0 && (
             <Link className="btn btn-primary" to="/game">
-              Go back to game <i class="fas fa-car button-icon"></i>
+              Go back to game <i className="fas fa-car button-icon"></i>
             </Link>
           )}
         </ul>

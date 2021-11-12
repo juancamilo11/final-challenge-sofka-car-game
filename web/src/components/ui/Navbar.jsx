@@ -89,6 +89,7 @@ export const Navbar = () => {
             className="nav-item nav-link mx-3"
             exact
             to="/player-list"
+            onClick={() => dispatch({ type: types.stopGame, payload: game })}
           >
             List of Players
           </NavLink>
@@ -98,6 +99,7 @@ export const Navbar = () => {
             className="nav-item nav-link"
             exact
             to="/podium-list"
+            onClick={() => dispatch({ type: types.stopGame, payload: game })}
           >
             List of Podiums
           </NavLink>
@@ -113,32 +115,34 @@ export const Navbar = () => {
               </spam>
               <button className="btn btn-info mr-3" onClick={handleGoToPodium}>
                 <span>
-                  Go to Podium<i class="fas fa-trophy button-icon"></i>
+                  Go to Podium<i className="fas fa-trophy button-icon"></i>
                 </span>
               </button>
             </div>
           )}
-          {game.playing && (
+          {game.playing && !game.finished && (
             <button
               className="btn btn-primary mr-3"
               onClick={() => handleGoAhead()}
             >
               <span>
-                Go! <i class="fas fa-car-side button-icon"></i>
+                Go! <i className="fas fa-car-side button-icon"></i>
               </span>
             </button>
           )}
-          <button className="btn btn-primary" onClick={() => handleResume()}>
-            {!game.playing ? (
-              <span>
-                Resume <i className="fas fa-play button-icon"></i>
-              </span>
-            ) : (
-              <span>
-                Stop <i className="fas fa-stop button-icon"></i>
-              </span>
-            )}
-          </button>
+          {!game.finished && (
+            <button className="btn btn-primary" onClick={() => handleResume()}>
+              {!game.playing ? (
+                <span>
+                  Resume <i className="fas fa-play button-icon"></i>
+                </span>
+              ) : (
+                <span>
+                  Stop <i className="fas fa-stop button-icon"></i>
+                </span>
+              )}
+            </button>
+          )}
           <button className="btn btn-primary mx-3" onClick={handleResetGame}>
             Reset game
           </button>

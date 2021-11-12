@@ -249,7 +249,8 @@ const PlayerInputForm = () => {
               disabled={game.numPlayers - counter + 1 <= 0}
               className="btn btn-primary form-control m-3"
             >
-              Input new player <i class="fas fa-sign-in-alt button-icon"></i>
+              Input new player{" "}
+              <i className="fas fa-sign-in-alt button-icon"></i>
             </button>
           </form>
 

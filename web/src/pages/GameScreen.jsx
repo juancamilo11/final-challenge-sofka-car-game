@@ -42,7 +42,9 @@ const GameScreen = ({ history }) => {
                 <tr className="distances">
                   <th className="d-flex justify-content-around">
                     {new Array(10).fill(10).map((value, index) => (
-                      <div>{parseInt(game.lengthKm) * 100 * index}</div>
+                      <div key={index}>
+                        {parseInt(game.lengthKm) * 100 * index}
+                      </div>
                       // <div>{parseInt(fake_game.lengthKm) * 100 * index}</div> // con fake data
 
                       // <div>{(parseInt(game.lengthKm)*1000/10) * index}</div> //simplificado

@@ -10,7 +10,10 @@ export const gameReducer = (state = {}, action) => {
         playing: true,
       };
     case types.stopGame:
-      return state;
+      return {
+        ...action.payload,
+        playing: false,
+      };
     case types.resetGame:
       return {
         ...action.payload,
@@ -85,12 +88,13 @@ export const gameReducer = (state = {}, action) => {
       return {
         ...action.payload,
         playerList: action.payload.playerList
-          .sort((player1, player2) => player2 - player1)
+          .sort((player1, player2) => player2.distance - player1.distance)
           .map((player) => {
             return {
               ...player,
               position:
-                player.distance !== action.payload.lengthKm
+                player.distance >= action.payload.lengthKm &&
+                player.position <= 0
                   ? playerPosition++
                   : player.position,
             };
