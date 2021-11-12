@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: darkgray;
+  user-select: none;
 }
 
 code {
@@ -33,10 +35,14 @@ code {
 .img-logo {
   width: 100px;
   height: 100px;
+  padding: 5px;
+  margin-left: 20px;
 }
 
 .img-car {
   width: 100px;
+  padding: 20px;
+  margin-left: 20px;
 }
 
 /* Podium */
@@ -64,7 +70,156 @@ code {
 /* Input container */
 .input-container {
   padding: 20px;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.dropdown {
+  width: 50%;
+}
+
+.select-row {
+  width: 100px;
+}
+
+.input-select {
+  width: 100%;
+}
+
+.btn-start {
+  width: 100%;
+}
+
+.img-pic-card {
+  width: 100%;
+  border: none;
+}
+
+.img-car-card {
+  margin-top: 20px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  border: none;
+}
+
+.game-frame {
+  margin-left: 170px;
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+.lane-frame {
+  position: relative;
+  border: 1px dashed black;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.table-title {
+  padding: 10px;
+  margin-left: 20%;
+}
+
+.leaderboards {
+  position: fixed;
+  padding: 15px;
+  right: 40px;
+  top: 70px;
+  height: 72vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.img-car-frame {
+  height: 50px;
+  position: relative;
+  /* left: 5px; */
+  top: 15px;
+}
+
+.img-pic-frame {
+  height: 40px;
+}
+
+.lane-info {
+  margin-left: -150px;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}
+
+.distances {
+  width: 100%;
+  text-align: center;
+  height: 30px;
+}
+
+.section-title {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+.podiums-title {
+  margin-top: -10px;
+  margin-bottom: 0px;
+}
+
+.splace-container,
+.tplace-container {
+  margin-top: 70px;
+}
+
+.podium-container {
+  margin-bottom: 50px;
+}
+
+.fplace-container {
+  margin-top: 30px;
+}
+
+.fplace-container .img-pic-card,
+.splace-container .img-pic-card,
+.tplace-container .img-pic-card {
+  margin-top: 10px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.fplace-container {
+  margin-right: 10px;
+}
+
+.splace-container {
+  margin-right: 10px;
+}
+
+.fplace-container .img-podium-card,
+.splace-container .img-podium-card,
+.tplace-container .img-podium-card {
+  margin-top: 10px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.img-photo-card {
   width: 30%;
+  margin-top: 30px;
   margin-left: 35%;
   margin-right: 35%;
+}
+
+.podium-title {
+  margin-top: 60px;
+  margin-bottom: -10px;
 }

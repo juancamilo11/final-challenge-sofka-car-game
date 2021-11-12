@@ -1,28 +1,167 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
-import car_data from "../data/CAR_DATA";
+import { GameContext } from "../game/gameContext";
+import types from "../type/types";
+//import fake_game from "../data/fake_data";
 
-const GameScreen = () => {
-  const cardata = car_data;
+const GameScreen = ({ history }) => {
+  const { game } = useContext(GameContext);
+
+  useEffect(() => {
+    if (game.numPlayers <= 0 && game.playerList.length === 0) {
+      history.replace("/");
+    }
+  }, []);
+
+  const getComputedDistance = (player) => {
+    return (player.distance * 1700) / (1000 * game.lengthKm);
+  };
+
+  // document.getElementById("yourDiv").clientWidth;
 
   return (
-    <>
+    <div className="game-container">
       <Navbar />
-      <ul className="game-container">
-        {cardata.map((carInfo) => (
-          <li key={carInfo.id}>
-            <h2>{carInfo.name}</h2>
-            <hr />
-            <p>Available at level: {carInfo.availableAtLevel}</p>
-            <p>Description: {carInfo.description}</p>
-            <img src={carInfo.url} alt="car" width="50" />
-            <p>{carInfo.url}</p>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <div className="row">
+          <div
+            className="col-7 game-frame"
+            style={{ height: `${game.playerList.length * 65}px` }}
+            // style={{ height: `${fake_game.playerList.length * 65}px` }}
+          >
+            <h1 className="text-center section-title display-3">
+              Game section
+            </h1>
+            <table style={{ width: "100%" }}>
+              <thead>
+                <tr className="distances">
+                  <th className="d-flex justify-content-around">
+                    {new Array(10).fill(10).map((value, index) => (
+                      <div>{parseInt(game.lengthKm) * 100 * index}</div>
+                      // <div>{parseInt(fake_game.lengthKm) * 100 * index}</div> // con fake data
+
+                      // <div>{(parseInt(game.lengthKm)*1000/10) * index}</div> //simplificado
+                    ))}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {game.playerList.map((player) => (
+                  /* {fake_game.playerList.map(player) => ( // con fake data */
+                  <tr key={player.id}>
+                    <div className="lane-frame">
+                      <td className="lane-info pr-1">
+                        <small>
+                          <b>{player.username}</b>
+                        </small>
+                        <img
+                          src={player?.pic.url}
+                          alt={player?.pic.name}
+                          className="img-pic-frame"
+                        />
+                      </td>
+                      {/* Si algo hacerle un overflox en x */}
+                      <td>
+                        <div className="img-car-frame">
+                          <img
+                            src={player.car.url}
+                            alt={player.car.name}
+                            width="50px"
+                            style={{
+                              marginLeft: `${getComputedDistance(player)}%`,
+                            }}
+                          />
+                        </div>
+                      </td>
+                    </div>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="leaderboards">
+            <h3 className="display-4 text-center my-3">LeaderBoards</h3>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col text-center">Lane</th>
+                  <th scope="col text-center">Rank</th>
+                  <th scope="col text-center">
+                    <span style={{ marginLeft: "10px" }}>Player</span>
+                  </th>
+                  <th scope="col text-center">
+                    <span style={{ marginLeft: "-20px" }}>Distance(m)</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {game.playerList.map((player) => (
+                  // {fake_game.playerList.map((player ) => (     // con fake data
+                  <tr key={player.username}>
+                    <td>
+                      <div
+                        className="d-flex justify-content-start"
+                        style={{ width: "20" }}
+                      >
+                        <h4 className="ml-3">{player.lane}</h4>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div
+                        className="d-flex justify-content-start"
+                        style={{ width: "20" }}
+                      >
+                        <h4 className="ml-3">{player.position}</h4>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div
+                        className="d-flex justify-content-start"
+                        style={{ width: "20" }}
+                      >
+                        <h4 className="ml-3">{player.username}</h4>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div
+                        className="d-flex justify-content-start"
+                        style={{ width: "20" }}
+                      >
+                        <h4 className="ml-3">{player.distance}</h4>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
       <Footer />
-    </>
+    </div>
   );
 };
 

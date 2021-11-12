@@ -1,11 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { GameContext } from "../../game/gameContext";
 import { Footer } from "../ui/Footer";
 import NavbarSecundary from "../ui/NavbarSecundary";
 import PlayerCard from "./PlayerCard";
 
-const PlayerList = () => {
+const PlayerList = ({ history }) => {
   const { game } = useContext(GameContext);
+
+  useEffect(() => {
+    if (game.numPlayers <= 0 && game.playerList.length === 0) {
+      history.replace("/");
+    }
+  }, []);
 
   return (
     <>
