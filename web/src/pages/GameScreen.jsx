@@ -53,7 +53,7 @@ const GameScreen = ({ history }) => {
                     <div className="lane-frame">
                       <td className="lane-info pr-1">
                         <small>
-                          <b>{player.username}</b>
+                          <b className="mr-2">{player.username}</b>
                         </small>
                         <img
                           src={player?.pic.url}
