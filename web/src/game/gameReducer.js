@@ -14,12 +14,17 @@ export const gameReducer = (state = {}, action) => {
         playing: false,
       };
     case types.resetGame:
+      const { game, data } = action.payload;
       return {
-        ...action.payload,
-        finished: false,
+        ...game,
+        finished: true,
         playing: false,
-        playerList: action.payload.playerList.map((player) => {
-          return { ...player, distance: 0 };
+        playerList: game.playerList.map((player) => {
+          return {
+            ...player,
+            position:
+              data.find((result) => result.name === player.car.name) || 0,
+          };
         }),
       };
     case types.createGame:

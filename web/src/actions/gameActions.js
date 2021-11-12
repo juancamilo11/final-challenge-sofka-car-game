@@ -50,25 +50,20 @@ export const addPlayerToGameAction = async (newPlayer) => {
   }
 };
 
-export const startGameAction = async (game) => {
-  const command = { type: "sofkau.juego.iniciarjuego", juegoId: game.gameId };
+export const resumeOrStopGameAction = async (gameId, state) => {
   try {
-    const res = await fetch(`${URL_BASE}/iniciarJuego`, {
+    const res = await fetch(`${URL_BASE}/toggleplaygame/${gameId}/${state}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(command),
     });
-    const status = await res.status;
-    const statusText = await res.statusText;
 
-    const values = { status, statusText };
+    const data = await res.text();
 
-    console.log(values);
-    //Al final se hace el dispatch del estado en base al resultado de la petición
+    console.log(data);
 
-    return values;
+    return data;
   } catch (err) {
     console.log(err);
   }
@@ -86,6 +81,22 @@ export const moveCarsAction = async (gameId) => {
 
     console.log("Respuesta serverrrrr move cars: ");
     console.log(data);
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const resetGameAction = async (gameId) => {
+  try {
+    const res = await fetch(`${URL_BASE}/resetgame/${gameId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
 
     return data;
   } catch (err) {

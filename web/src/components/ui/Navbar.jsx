@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import swal from "sweetalert";
+import {
+  resetGameAction,
+  resumeOrStopGameAction,
+} from "../../actions/gameActions";
 import { GameContext } from "../../game/gameContext";
 import types from "../../type/types";
 
@@ -8,18 +12,23 @@ export const Navbar = () => {
   const { game, dispatch } = useContext(GameContext);
   const history = useHistory();
 
-  const handleResume = () => {
+  const handleResumeOrStop = () => {
     if (game.playing) {
-      dispatch({
-        type: types.stopGame,
-        payload: game,
-      });
+      resumeOrStopGameAction(game.gameId, false).then((res) =>
+        dispatch({
+          type: types.stopGame,
+          payload: game,
+        })
+      );
     }
+
     if (!game.playing) {
-      dispatch({
-        type: types.resumeGame,
-        payload: game,
-      });
+      resumeOrStopGameAction(game.gameId, true).then((res) =>
+        dispatch({
+          type: types.resumeGame,
+          payload: game,
+        })
+      );
     }
   };
 
@@ -51,7 +60,9 @@ export const Navbar = () => {
       buttons: ["Cancel", "Confirm"],
     }).then((confirmation) => {
       if (confirmation) {
-        dispatch({ type: types.resetGame, payload: game });
+        resetGameAction(game.gameId).then((data) =>
+          dispatch({ type: types.resetGame, payload: { game, data } })
+        );
       }
     });
   };
@@ -111,7 +122,10 @@ export const Navbar = () => {
             </div>
           )}
           {!game.finished && (
-            <button className="btn btn-primary" onClick={() => handleResume()}>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleResumeOrStop()}
+            >
               {!game.playing ? (
                 <span>
                   Resume <i className="fas fa-play button-icon"></i>
