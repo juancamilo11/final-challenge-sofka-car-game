@@ -1,6 +1,6 @@
 const game_constants = {
-  MAX_NUM_PLAYERS: 50,
-  MAX_LENGTH: 50,
+  MAX_NUM_PLAYERS: 10,
+  MAX_LENGTH: 100,
 };
 
 const validValues = (lengthKm, numPlayers) => {
@@ -42,6 +42,7 @@ const validateInputPlayerForm = (game, formValues) => {
   if (!pic?.name || !car?.name) {
     return false;
   }
+
   return true;
 };
 

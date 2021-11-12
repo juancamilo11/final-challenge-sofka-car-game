@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, history } from "react-router-dom";
 import { useForm } from "../components/hooks/useForm";
 import { validValues } from "../data/constants";
@@ -41,34 +41,34 @@ const WelcomeScreen = ({ history }) => {
         numPlayers: numeroDeCarriles,
       };
 
-      // console.log(JSON.stringify(newGame));
-      // createGameAction(newGame)
-      //   .then((values) => {
-      //     if (values.status === 200) {
-      //       //Aquí se podría hacer el dispatch
-      //       swal("Nice job! Let's go ahead!");
-      dispatch({
-        type: types.createGame,
-        payload: {
-          game,
-          data: {
-            gameId: juegoId,
-            lengthKm: kilometros,
-            numPlayers: numeroDeCarriles,
-          },
-        },
-      });
-      history.replace("/setup-game");
-      //   }
-      // })
-      // .catch((err) => {
-      //   swal("Error:" + err);
-      // });
+      createGameAction(newGame)
+        .then((id) => {
+          swal("Nice job! Let's go ahead! " + id);
+          dispatch({
+            type: types.createGame,
+            payload: {
+              game,
+              data: {
+                gameId: juegoId,
+                lengthKm: kilometros,
+                numPlayers: numeroDeCarriles,
+              },
+            },
+          });
+          history.replace("/setup-game");
+        })
+        .catch((err) => {
+          swal("Error:" + err);
+        });
     } else {
       swal("Invalid inputs, please try again.");
     }
     reset();
   };
+
+  useEffect(() => {
+    dispatch({ type: types.resetAppState, payload: game });
+  }, []);
 
   return (
     <div className="container welcome-container ms-3 animate__animated animate__fadeIn">
@@ -87,11 +87,11 @@ const WelcomeScreen = ({ history }) => {
         <div className="col text-center mt-5 d-block">
           <h3>Are you ready?</h3>
           <button className="btn btn-primary my-3" onClick={handleGoAhead}>
-            Setup new game!
+            Setup new game! <i class="fas fa-cog button-icon"></i>
           </button>
           <p>or</p>
           <button className="btn btn-info my-3" onClick={handleGoToPodiums}>
-            See the Podium History
+            See the Podium History <i class="fas fa-trophy button-icon"></i>
           </button>
         </div>
       )}
@@ -107,7 +107,7 @@ const WelcomeScreen = ({ history }) => {
                 type="text"
                 name="numPlayers"
                 className="form-control"
-                placeholder="Number of players"
+                placeholder="Number of players [Max:10]"
                 value={numPlayers}
                 onChange={handleInputChange}
               />
@@ -115,15 +115,16 @@ const WelcomeScreen = ({ history }) => {
                 type="text"
                 name="lengthKm"
                 className="form-control mt-3"
-                placeholder="Length for the lanes (Km)"
+                placeholder="Length for the lanes(Km) [Max:100]"
                 value={lengthKm}
                 onChange={handleInputChange}
               />
-              <input
+              <button
                 type="submit"
                 className="btn btn-primary mt-5 form-control"
-                value="Send"
-              />
+              >
+                Send<i class="fas fa-sign-in-alt button-icon"></i>
+              </button>
             </div>
           </form>
         </div>

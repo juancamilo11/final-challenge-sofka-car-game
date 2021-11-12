@@ -1,6 +1,6 @@
 import types from "../type/types";
 import { getNewRandomDistance } from "../actions/demoPlaying";
-import { act } from "react-dom/test-utils";
+import { initialState } from "../CarGameApp";
 
 export const gameReducer = (state = {}, action) => {
   switch (action.type) {
@@ -29,9 +29,14 @@ export const gameReducer = (state = {}, action) => {
       };
     case types.addPlayerToGame:
       const { playerList } = action.payload.game;
+      const { newPicId, newCarId } = action.payload.metadata;
+      const { selectedCarsId, selectedPicsId } = action.payload.game;
+
       return {
         ...action.payload.game,
         playerList: [...playerList, action.payload.data],
+        selectedCarsId: [...selectedCarsId, newCarId],
+        selectedPicsId: [...selectedPicsId, newPicId],
       };
     case types.startGame:
       return {
@@ -44,7 +49,6 @@ export const gameReducer = (state = {}, action) => {
         finished: true,
       };
     case types.moveCars:
-      console.log("moviendo carros...");
       return {
         ...action.payload,
         playerList: action.payload.playerList.map((player) =>
@@ -68,15 +72,32 @@ export const gameReducer = (state = {}, action) => {
         ),
       };
     case types.verifyDistances:
-      console.log("corrigiendo distancias...");
       return {
         ...action.payload,
-        playerList: action.payload.playerList.map((player) =>
-          player.distance > action.payload.lengthKm * 1000
+        playerList: action.payload.playerList.map((player) => {
+          return player.distance > action.payload.lengthKm * 1000
             ? { ...player, distance: action.payload.lengthKm * 1000 }
-            : player
-        ),
+            : { ...player };
+        }),
       };
+    case types.setPositions:
+      let playerPosition = 1;
+      return {
+        ...action.payload,
+        playerList: action.payload.playerList
+          .sort((player1, player2) => player2 - player1)
+          .map((player) => {
+            return {
+              ...player,
+              position:
+                player.distance !== action.payload.lengthKm
+                  ? playerPosition++
+                  : player.position,
+            };
+          }),
+      };
+    case types.resetAppState:
+      return initialState;
     default:
       return state;
   }

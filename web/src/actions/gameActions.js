@@ -1,40 +1,35 @@
-const URL_BASE = "http://localhost:8080/api";
+const URL_BASE = "https://young-cliffs-41883.herokuapp.com";
 
 export const createGameAction = async (newGame) => {
   const { gameId, lengthKm, numPlayers } = newGame;
-
   const command = {
-    type: "sofkau.juego.anadirjugador",
-    juegoId: gameId,
-    numeroDeCarriles: numPlayers,
-    kilometros: lengthKm,
+    id: gameId,
+    numPlayers: numPlayers,
+    lenghtKm: lengthKm,
   };
   try {
-    const res = await fetch(`${URL_BASE}/crearJuego`, {
+    const res = await fetch(`${URL_BASE}/createGame`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(command),
     });
-    const status = await res.status;
-    const statusText = await res.statusText;
+    const data = await res.text();
 
-    const values = { status, statusText };
-
-    console.log(values);
+    console.log("**********" + data);
     //Al final se hace el dispatch del estado en base al resultado de la petición
 
-    return values;
+    return data;
   } catch (err) {
     console.log(err);
   }
 };
 
 export const addPlayerToGameAction = async (newPlayer) => {
-  const command = { ...newPlayer, type: "sofkau.juego.anadirjugador" };
+  const command = { ...newPlayer };
   try {
-    const res = await fetch(`${URL_BASE}/anadirJugador`, {
+    const res = await fetch(`${URL_BASE}/addPlayer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

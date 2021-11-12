@@ -10,7 +10,7 @@ const PodiumHistoryScreen = () => {
   return (
     <div>
       <NavbarSecundary />
-      <h1 className="text-center my-4">Podium List</h1>
+      <h1 className="text-center my-4 display-2">Podium List</h1>
       {podiumList.length > 0 ? (
         <>
           {podiumList.map((podium) => {

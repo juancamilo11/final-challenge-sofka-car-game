@@ -30,6 +30,7 @@ export const Navbar = () => {
     });
     dispatch({ type: types.sortPlayer, payload: game });
     dispatch({ type: types.verifyDistances, payload: game });
+    dispatch({ type: types.setPositions, payload: game });
   };
 
   const handleGoToPodium = () => {
@@ -77,7 +78,7 @@ export const Navbar = () => {
         borderRadius: "0px",
       }}
     >
-      <Link className="navbar-brand mx-5" to="/">
+      <Link className="navbar-brand mr-5" to="/">
         RandomCarRaceApp
       </Link>
 
@@ -89,7 +90,7 @@ export const Navbar = () => {
             exact
             to="/player-list"
           >
-            List of players
+            List of Players
           </NavLink>
 
           <NavLink
@@ -98,7 +99,7 @@ export const Navbar = () => {
             exact
             to="/podium-list"
           >
-            List of podiums
+            List of Podiums
           </NavLink>
         </div>
       </div>
