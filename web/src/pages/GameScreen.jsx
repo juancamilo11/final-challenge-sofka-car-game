@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { getNewRandomDistance } from "../actions/demoPlaying";
+import { moveCarsAction } from "../actions/gameActions";
 import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
@@ -10,13 +11,6 @@ const GameScreen = ({ history }) => {
   const { game, dispatch } = useContext(GameContext);
   const [trigger, setTrigger] = useState(0);
   const deplayRef = useRef(game.playing);
-
-  // useEffect(() => {
-  //   if (game.numPlayers <= 0 && game.playerList.length === 0) {
-  //     history.replace("/");
-  //   }
-  //   dispatch({ type: types.verifyDistances, payload: game });
-  // }, [game.playerList]);
 
   useEffect(() => {
     dispatch({ type: types.verifyDistances, payload: game });
@@ -30,17 +24,15 @@ const GameScreen = ({ history }) => {
     if (deplayRef.current) {
       setTimeout(() => {
         setTrigger(trigger + 1);
-        //dispatch({ type: types.moveCars, payload: game });
-        console.log("HOLAAAAA!!!!!!");
+        console.log("A punto de hacer la petición");
+        moveCarsAction(game.gameId).then((data) => {
+          console.log("Antes de hacer el dispatch");
+          dispatch({ type: types.moveCars, payload: { game, data: data } });
+          console.log("Luego de hacer el dispatch - fin\n\n");
+        });
       }, 2000);
     }
   }, [trigger, game.playing]);
-
-  const getComputedDistance = (player) => {
-    return (player?.distance * 1725) / (1000 * game.lengthKm);
-  };
-  //recorrer y verificar los que ya seleccionaron OJO CON EL ANCHO DE LA VENTANA DE JUEGO
-  // document.getElementById("yourDiv").clientWidth;
 
   return (
     <div className="game-container">
