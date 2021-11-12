@@ -23,16 +23,6 @@ export const Navbar = () => {
     }
   };
 
-  const handleGoAhead = () => {
-    dispatch({
-      type: types.moveCars,
-      payload: game,
-    });
-    dispatch({ type: types.sortPlayer, payload: game });
-    dispatch({ type: types.verifyDistances, payload: game });
-    dispatch({ type: types.setPositions, payload: game });
-  };
-
   const handleGoToPodium = () => {
     dispatch({
       type: types.stopGame,

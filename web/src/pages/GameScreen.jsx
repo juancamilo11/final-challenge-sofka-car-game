@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { getNewRandomDistance } from "../actions/demoPlaying";
 import { moveCarsAction } from "../actions/gameActions";
 import { Footer } from "../components/ui/Footer";
 import { Navbar } from "../components/ui/Navbar";
 import { GameContext } from "../game/gameContext";
 import types from "../type/types";
-//import fake_game from "../data/fake_data";
 
-const GameScreen = ({ history }) => {
+const GameScreen = () => {
   const { game, dispatch } = useContext(GameContext);
   const [trigger, setTrigger] = useState(0);
   const deplayRef = useRef(game.playing);
@@ -42,7 +40,6 @@ const GameScreen = ({ history }) => {
           <div
             className="col-7 game-frame"
             style={{ height: `${game.playerList.length * 65}px` }}
-            // style={{ height: `${fake_game.playerList.length * 65}px` }}
           >
             <h1 className="text-center section-title display-3">
               Game section
@@ -55,16 +52,12 @@ const GameScreen = ({ history }) => {
                       <div key={index}>
                         {parseInt(game.lengthKm) * 100 * index}
                       </div>
-                      // <div>{parseInt(fake_game.lengthKm) * 100 * index}</div> // con fake data
-
-                      // <div>{(parseInt(game.lengthKm)*1000/10) * index}</div> //simplificado
                     ))}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {game.playerList.map((player) => (
-                  /* {fake_game.playerList.map(player) => ( // con fake data */
                   <tr key={player.id}>
                     <div className="lane-frame">
                       <td className="lane-info pr-1">
@@ -77,7 +70,6 @@ const GameScreen = ({ history }) => {
                           className="img-pic-frame"
                         />
                       </td>
-                      {/* Si algo hacerle un overflox en x */}
                       <td>
                         <div className="img-car-frame">
                           <img
@@ -119,7 +111,6 @@ const GameScreen = ({ history }) => {
               </thead>
               <tbody>
                 {game.playerList.map((player) => (
-                  // {fake_game.playerList.map((player ) => (     // con fake data
                   <tr key={player.username}>
                     <td>
                       <div

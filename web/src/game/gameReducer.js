@@ -1,5 +1,4 @@
 import types from "../type/types";
-import { getNewRandomDistance } from "../actions/demoPlaying";
 import { initialState } from "../CarGameApp";
 
 export const gameReducer = (state = {}, action) => {

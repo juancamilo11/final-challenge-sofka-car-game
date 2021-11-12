@@ -17,7 +17,7 @@ const PlayerCard = ({ id, playerName, username, car, pic }) => {
       <div className="row no-gutters">
         <div className="col-md-4">
           <img
-            src={process.env.PUBLIC_URL + `${pic?.url}`} //cambiar por el id de la imgen
+            src={process.env.PUBLIC_URL + `${pic?.url}`}
             className="card-img img-logo"
             alt={playerName}
             style={{ marginTop: "15px" }}

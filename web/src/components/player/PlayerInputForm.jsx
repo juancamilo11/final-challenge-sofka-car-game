@@ -4,15 +4,9 @@ import photos_data from "../../data/PHOTOS_DATA";
 import car_data from "../../data/CAR_DATA";
 import { validateInputPlayerForm } from "../../data/constants";
 import useCounter from "../hooks/useCounter";
-// import { addPlayerToGameAction } from "../../actions/gameActions";
 import types from "../../type/types";
-import { initialState } from "../../CarGameApp";
 import { useHistory } from "react-router";
-import {
-  addPlayerToGameAction,
-  startGameAction,
-} from "../../actions/gameActions";
-import swal from "sweetalert";
+import { addPlayerToGameAction } from "../../actions/gameActions";
 import uniqueString from "unique-string";
 
 const PlayerInputForm = () => {

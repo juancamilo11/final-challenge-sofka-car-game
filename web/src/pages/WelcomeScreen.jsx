@@ -5,14 +5,12 @@ import { validValues } from "../data/constants";
 import { GameContext } from "../game/gameContext";
 import swal from "sweetalert";
 import { createGameAction } from "../actions/gameActions";
-import nextId from "react-id-generator";
 import uniqueString from "unique-string";
 import types from "../type/types";
 
 const WelcomeScreen = ({ history }) => {
   const [step, setStep] = useState(0);
   const { game, dispatch } = useContext(GameContext);
-  // lengthKm:-1, numPlayers:-1,
   const [values, handleInputChange, reset] = useForm({
     lengthKm: "",
     numPlayers: "",
@@ -134,8 +132,3 @@ const WelcomeScreen = ({ history }) => {
 };
 
 export default WelcomeScreen;
-{
-  /* <Link className="btn btn-primary my-3" to="/setup-game">
-            Setup new game!
-          </Link> */
-}
