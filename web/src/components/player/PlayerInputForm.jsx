@@ -8,7 +8,10 @@ import useCounter from "../hooks/useCounter";
 import types from "../../type/types";
 import { initialState } from "../../CarGameApp";
 import { useHistory } from "react-router";
-import { startGameAction } from "../../actions/gameActions";
+import {
+  addPlayerToGameAction,
+  startGameAction,
+} from "../../actions/gameActions";
 import swal from "sweetalert";
 import uniqueString from "unique-string";
 
@@ -37,39 +40,42 @@ const PlayerInputForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("FOrm values");
     console.log(formValues);
     const result = validateInputPlayerForm(game, formValues);
     if (result === true) {
-      // const newPlayer = {
-      //   juegoId: game.gameId,
-      //   cedula: username,
-      //   nombre: playerName,
-      // };
+      //       /addPlayer
+      // {
+      //     "gameId":"111121111011",
+      //     "name":"Farid",
+      //     "username":"Atos"
+      // }
 
-      // addPlayerToGameAction(newPlayer).then((result) => {
-      // result.status === 200 &&
+      const newPlayer = {
+        gameId: game.gameId,
+        username,
+        name: playerName,
+        carName: formValues.car.name,
+      };
 
-      dispatch({
-        type: types.addPlayerToGame,
-        payload: {
-          game,
-          data: {
-            ...formValues,
-            lane: counter, //Counter -> Lane
-            id: uniqueString(),
-            distance: 0,
-            position: 0,
+      addPlayerToGameAction(newPlayer).then((result) => {
+        dispatch({
+          type: types.addPlayerToGame,
+          payload: {
+            game,
+            data: {
+              ...formValues,
+              lane: counter, //Counter -> Lane
+              id: uniqueString(),
+              distance: 0,
+              position: 0,
+            },
+            metadata: {
+              newPicId: formValues.pic.id,
+              newCarId: formValues.car.id,
+            },
           },
-          metadata: {
-            newPicId: formValues.pic.id,
-            newCarId: formValues.car.id,
-          },
-        },
+        });
       });
-
-      // });
-
       setSuccessMessage("The player has been successfuly added");
       increment();
       setFormValues({ username: "", playerName: "", pic: {}, car: {} });

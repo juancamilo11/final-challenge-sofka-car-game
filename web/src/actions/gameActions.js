@@ -2,12 +2,6 @@ const URL_BASE = "https://young-cliffs-41883.herokuapp.com";
 
 export const createGameAction = async (newGame) => {
   const { gameId, lengthKm, numPlayers } = newGame;
-  /*/createGame
-{
-    "id":"111121111011",
-    "lenghtKm":5,
-    "numPlayers":4
-}*/
   const command = {
     id: gameId,
     numPlayers: numPlayers,
@@ -33,9 +27,9 @@ export const createGameAction = async (newGame) => {
 };
 
 export const addPlayerToGameAction = async (newPlayer) => {
-  const command = { ...newPlayer, type: "sofkau.juego.anadirjugador" };
+  const command = { ...newPlayer };
   try {
-    const res = await fetch(`${URL_BASE}/anadirJugador`, {
+    const res = await fetch(`${URL_BASE}/addPlayer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
