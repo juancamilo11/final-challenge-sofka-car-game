@@ -1,6 +1,5 @@
 import types from "../type/types";
 import { getNewRandomDistance } from "../actions/demoPlaying";
-import { act } from "react-dom/test-utils";
 
 export const gameReducer = (state = {}, action) => {
   switch (action.type) {
